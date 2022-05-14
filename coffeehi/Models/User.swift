@@ -15,6 +15,7 @@ class User: Decodable, Identifiable, ObservableObject {
     var password: String?
     var email: String?
     
+    
     init() {
         return
     }
