@@ -33,12 +33,12 @@ struct LoginView: View {
                 }
                 .frame(width: g.size.width, height: g.size.height / 2.2)
                 
-                VStack(spacing: 40.0) {
+                VStack(spacing: 30.0) {
                     
                     VStack(alignment: .leading) {
                         
                         Text("username")
-                            .foregroundColor(Color(UIColor(red: 0.016, green: 0.767, blue: 0.541, alpha: 1).cgColor))
+                            .foregroundColor(Color(primaryColor.cgColor))
                             .tracking(2.5)
 //                            .font(.headline)
                         
@@ -65,7 +65,7 @@ struct LoginView: View {
                                 .cornerRadius(10)
                         }
                         Text("Forgot password?")
-                            .foregroundColor(Color(UIColor(red: 0.016, green: 0.767, blue: 0.541, alpha: 1).cgColor))
+                            .foregroundColor(Color(primaryColor.cgColor))
                             .underline()
                             .font(.caption)
                             .tracking(1)
@@ -74,7 +74,7 @@ struct LoginView: View {
                     ZStack {
                         
                         Rectangle()
-                            .fill(Color(UIColor(red: 0.016, green: 0.767, blue: 0.541, alpha: 1).cgColor))
+                            .fill(Color(primaryColor.cgColor))
                             .frame(width: g.size.width - 80, height: 44)
                             .cornerRadius(20)
                         
@@ -84,7 +84,7 @@ struct LoginView: View {
                     }
                     
                     Text("Create an account")
-                        .foregroundColor(Color(UIColor(red: 0.016, green: 0.767, blue: 0.541, alpha: 1).cgColor))
+                        .foregroundColor(Color(primaryColor.cgColor))
                         .underline()
                         .font(.headline)
                         .tracking(2)
