@@ -7,21 +7,35 @@
 
 import Foundation
 
-class Post: ObservableObject {
+class Post: Identifiable, ObservableObject {
 
-    var id: UUID?
+    var postId: UUID?
+    var userId: UUID?
     var username: String?
     var name: String?
     
-    @Published var title: String?
-    @Published var body: String?
-    @Published var likeCount: Int?
-    @Published var likesList: [String]?
-    @Published var commentCount: Int?
-    @Published var comments: [String]?
+    var title: String?
+    var body: String?
+    var likeCount: Int?
+    var likesList: [String]?
+    var commentCount: Int?
+    var comments: [String]?
+    var type: String?
+    var image: String?
+    var location: Location?
+    var recipe: Recipe?
+}
+
+struct Recipe {
     
+    var recipeId: UUID?
+    var recipeTitle: String?
+    var recipeIngredients: [String]?
+    var recipeDirections: [String]?
+}
+
+struct Location: Decodable {
     
-    init() {
-        return
-    }
+    var latitude: Double?
+    var longitude: Double?
 }

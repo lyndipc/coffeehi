@@ -9,14 +9,9 @@ import Foundation
 
 class User: Decodable, Identifiable, ObservableObject {
     
-    var id: UUID?
+    var userId: UUID?
     var name: String?
     var username: String?
     var password: String?
     var email: String?
-    
-    
-    init() {
-        return
-    }
 }
