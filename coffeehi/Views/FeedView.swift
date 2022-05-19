@@ -36,6 +36,7 @@ struct FeedView: View {
                     
                     let width = g.size.width - 50
                     
+                    // TODO: Loop through Post data object
                     ForEach(0..<10) {index in
                         
                         PostView(width: width)
