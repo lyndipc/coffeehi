@@ -11,7 +11,7 @@ import SwiftUI
 struct coffeehiApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LaunchView()
         }
     }
 }
