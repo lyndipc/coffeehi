@@ -18,6 +18,7 @@
 		3D85E5342834261B00ED7B4A /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D85E5332834261B00ED7B4A /* FeedView.swift */; };
 		3DA5608C28343DF200176B53 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA5608B28343DF200176B53 /* PostView.swift */; };
 		3DA5608E2834543200176B53 /* EngagementBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA5608D2834543200176B53 /* EngagementBar.swift */; };
+		3DAA981628369D3800AAD340 /* LogoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA981528369D3800AAD340 /* LogoHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		3D85E5332834261B00ED7B4A /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		3DA5608B28343DF200176B53 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		3DA5608D2834543200176B53 /* EngagementBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngagementBar.swift; sourceTree = "<group>"; };
+		3DAA981528369D3800AAD340 /* LogoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 			children = (
 				3D85E531283413E500ED7B4A /* NavBar.swift */,
 				3DA5608D2834543200176B53 /* EngagementBar.swift */,
+				3DAA981528369D3800AAD340 /* LogoHeader.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -103,11 +106,11 @@
 		3D67C37C282F7A6500771072 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3DAA981428369CF300AAD340 /* Post */,
 				3D67C370282F7A4700771072 /* ContentView.swift */,
 				3D31C0E528337A63000832D4 /* Common */,
 				3D31C0E428337A59000832D4 /* Login */,
 				3D85E5332834261B00ED7B4A /* FeedView.swift */,
-				3DA5608B28343DF200176B53 /* PostView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -126,6 +129,14 @@
 				3D67C381282F7B5B00771072 /* Post.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		3DAA981428369CF300AAD340 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				3DA5608B28343DF200176B53 /* PostView.swift */,
+			);
+			path = Post;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DA5608E2834543200176B53 /* EngagementBar.swift in Sources */,
+				3DAA981628369D3800AAD340 /* LogoHeader.swift in Sources */,
 				3D85E5342834261B00ED7B4A /* FeedView.swift in Sources */,
 				3D67C371282F7A4700771072 /* ContentView.swift in Sources */,
 				3DA5608C28343DF200176B53 /* PostView.swift in Sources */,
