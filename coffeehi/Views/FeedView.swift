@@ -19,6 +19,7 @@ struct FeedView: View {
             
             ScrollView {
 
+                // Display posts in home feed
                 LazyVStack(alignment: .center, spacing: 5.0, pinnedViews: [.sectionFooters]) {
                     
                     Section(footer: NavBar()) {

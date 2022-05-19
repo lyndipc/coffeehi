@@ -21,8 +21,8 @@ struct LoginView: View {
                         Text("coffeehi")
                             .font(.largeTitle)
                             .foregroundColor(.white)
-                            .tracking(5)
-                        Image("Logo")
+                            .tracking(8)
+                        Image("logo")
                     }
                     
                     Text("a place to share a cup of caffeinated magic with some friends")
@@ -39,7 +39,7 @@ struct LoginView: View {
                         
                         Text("username")
                             .foregroundColor(Color(primaryColor.cgColor))
-                            .tracking(2.5)
+                            .tracking(3)
 //                            .font(.headline)
                         
                         ZStack {
@@ -55,7 +55,7 @@ struct LoginView: View {
                         
                         Text("password")
                             .foregroundColor(Color(UIColor(red: 0.016, green: 0.767, blue: 0.541, alpha: 1).cgColor))
-                            .tracking(2.5)
+                            .tracking(3)
                         
                         ZStack {
                             
@@ -80,7 +80,7 @@ struct LoginView: View {
                         
                         Text("sign in")
                             .foregroundColor(.white)
-                            .tracking(2.5)
+                            .tracking(3)
                     }
                     
                     Text("Create an account")

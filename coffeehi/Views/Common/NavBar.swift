@@ -36,7 +36,7 @@ struct NavBar: View {
                     .scaledToFit()
                     .frame(height: 25)
                 
-                // Profile pic
+                // TODO: Profile pic
                 Circle()
                     .fill(.gray)
                     .frame(width: 35)

@@ -17,7 +17,7 @@ struct PostView: View {
                 
             HStack(spacing: 0.0) {
                     
-                    // Profile image
+                    // MARK: Profile image
                     Image("ben")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -25,7 +25,7 @@ struct PostView: View {
                         .clipShape(Circle())
                         .padding([.leading, .trailing], 10.0)
                     
-                    // Name
+                    // MARK: User's display name
                     Text("Ben Thompson")
                         .font(.title3)
                         .bold()
@@ -33,7 +33,8 @@ struct PostView: View {
                 .frame(height: 55)
                 
                 // TODO: Create conditional --> If image was posted, it will display here
-                    
+                
+                // MARK: Posted image
                 Image("friends-coffee")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -42,14 +43,14 @@ struct PostView: View {
                     .padding([.top, .bottom], 10.0)
                     .padding([.leading, .trailing])
                 
-                // Post content
+                // MARK: Post content
                 Text("This is sample post text")
                     .padding([.trailing, .leading, .bottom])
                     .font(.body)
                     
                 // TODO: Add method to determine when to include "Read More" button
                 
-                // Engagement Bar
+                // MARK: Engagement Bar
                 EngagementBar()
                 .padding([.leading, .trailing, .bottom])
                 
@@ -63,10 +64,9 @@ struct PostView: View {
 struct PostView_Previews: PreviewProvider {
     static var previews: some View {
         
-        
+        // Embedded in GeometryReader & ScrollView to simulate FeedView presentation
         GeometryReader { g in
             
-            // Embedded in a ScrollView to simulate FeedView presentation
             ScrollView {
                 
                 PostView(width: g.size.width - 30)
