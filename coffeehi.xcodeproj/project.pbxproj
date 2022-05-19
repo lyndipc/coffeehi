@@ -20,6 +20,7 @@
 		3DA5608E2834543200176B53 /* EngagementBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA5608D2834543200176B53 /* EngagementBar.swift */; };
 		3DAA981628369D3800AAD340 /* LogoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA981528369D3800AAD340 /* LogoHeader.swift */; };
 		3DAA981828369FD100AAD340 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA981728369FD100AAD340 /* PostDetailView.swift */; };
+		3DAA981A2836AE1D00AAD340 /* TrendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA98192836AE1D00AAD340 /* TrendingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		3DA5608D2834543200176B53 /* EngagementBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngagementBar.swift; sourceTree = "<group>"; };
 		3DAA981528369D3800AAD340 /* LogoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoHeader.swift; sourceTree = "<group>"; };
 		3DAA981728369FD100AAD340 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
+		3DAA98192836AE1D00AAD340 /* TrendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			children = (
 				3D67C370282F7A4700771072 /* LaunchView.swift */,
 				3D85E5332834261B00ED7B4A /* FeedView.swift */,
+				3DAA98192836AE1D00AAD340 /* TrendingView.swift */,
 				3D31C0E528337A63000832D4 /* Common */,
 				3D31C0E428337A59000832D4 /* Login */,
 				3DAA981428369CF300AAD340 /* Post */,
@@ -215,6 +218,7 @@
 				3DAA981828369FD100AAD340 /* PostDetailView.swift in Sources */,
 				3DA5608E2834543200176B53 /* EngagementBar.swift in Sources */,
 				3DAA981628369D3800AAD340 /* LogoHeader.swift in Sources */,
+				3DAA981A2836AE1D00AAD340 /* TrendingView.swift in Sources */,
 				3D85E5342834261B00ED7B4A /* FeedView.swift in Sources */,
 				3D67C371282F7A4700771072 /* LaunchView.swift in Sources */,
 				3DA5608C28343DF200176B53 /* PostView.swift in Sources */,
