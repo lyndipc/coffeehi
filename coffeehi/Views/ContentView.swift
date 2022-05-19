@@ -12,7 +12,7 @@ let primaryColor = UIColor(red: 0.016, green: 0.767, blue: 0.541, alpha: 1)
 struct ContentView: View {
     var body: some View {
         VStack {
-            NavigationBar()
+            NavBar()
             
             Spacer()
             Text("hi")

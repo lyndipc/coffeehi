@@ -62,6 +62,17 @@ struct PostView: View {
 
 struct PostView_Previews: PreviewProvider {
     static var previews: some View {
-        PostView()
+        
+        
+        GeometryReader { g in
+            
+            // Embedded in a ScrollView to simulate FeedView presentation
+            ScrollView {
+                
+                PostView(width: g.size.width - 30)
+                    .frame(maxHeight: 600)
+                    .padding(.top)
+            }
+        }
     }
 }

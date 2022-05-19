@@ -21,7 +21,7 @@ struct EngagementBar: View {
             
             HStack(spacing: 10.0) {
              
-                Image("message-solid")
+                Image("message")
                 Text("4")
                     .foregroundColor(Color(primaryColor))
             }

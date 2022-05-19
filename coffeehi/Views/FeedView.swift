@@ -18,34 +18,35 @@ struct FeedView: View {
         GeometryReader { g in
             
             ScrollView {
-                
-                NavigationBar()
-                    .padding(.bottom, 50.0)
-                
-                LazyVStack(alignment: .center, spacing: 5.0) {
+
+                LazyVStack(alignment: .center, spacing: 5.0, pinnedViews: [.sectionFooters]) {
                     
-                    ZStack {
-                        Rectangle()
-                            .fill(Color(lightGray.cgColor))
-                            .frame(width: g.size.width - 50, height: 75)
-                            .cornerRadius(10)
-                            .padding(20.0)
+                    Section(footer: NavBar()) {
                         
-                        // TODO: Add create WritePostBox component here
-                    }
-                    
-                    let width = g.size.width - 50
-                    
-                    // TODO: Loop through Post data object
-                    ForEach(0..<10) {index in
-                        
-                        PostView(width: width)
+                        Image("logo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 25)
                             .padding(.top)
-                            .frame(maxHeight: 600)
+                            .padding(.bottom, 5.0)
+                            .shadow(color: Color(lightGray), radius: 0.8, x: 5.0, y: 3.0)
+                        
+                        let width = g.size.width - 50
+                        
+                        // TODO: Loop through Post data object
+                        ForEach(0..<10) {index in
+                            
+                            PostView(width: width)
+                                .padding(.top)
+                                .frame(maxHeight: 600)
+                        }
+                        
                     }
+                    .frame(width: g.size.width - 30)
+                    
                 }
-                .frame(width: g.size.width - 30)
             }
+            .ignoresSafeArea(edges: [.bottom])
         }
     }
 }
