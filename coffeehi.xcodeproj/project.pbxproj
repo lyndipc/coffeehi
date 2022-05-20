@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D22124528376545005C0F43 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D22124428376545005C0F43 /* ProfileView.swift */; };
+		3D2212472837668E005C0F43 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2212462837668E005C0F43 /* ProfileImage.swift */; };
 		3D31C0E32833700A000832D4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D31C0E22833700A000832D4 /* LoginView.swift */; };
 		3D67C36F282F7A4700771072 /* coffeehiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D67C36E282F7A4700771072 /* coffeehiApp.swift */; };
 		3D67C371282F7A4700771072 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D67C370282F7A4700771072 /* LaunchView.swift */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D22124428376545005C0F43 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		3D2212462837668E005C0F43 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		3D31C0E22833700A000832D4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		3D67C36B282F7A4700771072 /* coffeehi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = coffeehi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D67C36E282F7A4700771072 /* coffeehiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = coffeehiApp.swift; sourceTree = "<group>"; };
@@ -66,6 +70,7 @@
 				3DA5608D2834543200176B53 /* EngagementBar.swift */,
 				3DAA981528369D3800AAD340 /* LogoHeader.swift */,
 				3D85E531283413E500ED7B4A /* NavBar.swift */,
+				3D2212462837668E005C0F43 /* ProfileImage.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -112,6 +117,7 @@
 			children = (
 				3D67C370282F7A4700771072 /* LaunchView.swift */,
 				3D85E5332834261B00ED7B4A /* FeedView.swift */,
+				3D22124428376545005C0F43 /* ProfileView.swift */,
 				3DAA98192836AE1D00AAD340 /* TrendingView.swift */,
 				3D31C0E528337A63000832D4 /* Common */,
 				3D31C0E428337A59000832D4 /* Login */,
@@ -216,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DAA981828369FD100AAD340 /* PostDetailView.swift in Sources */,
+				3D22124528376545005C0F43 /* ProfileView.swift in Sources */,
 				3DA5608E2834543200176B53 /* EngagementBar.swift in Sources */,
 				3DAA981628369D3800AAD340 /* LogoHeader.swift in Sources */,
 				3DAA981A2836AE1D00AAD340 /* TrendingView.swift in Sources */,
@@ -223,6 +230,7 @@
 				3D67C371282F7A4700771072 /* LaunchView.swift in Sources */,
 				3DA5608C28343DF200176B53 /* PostView.swift in Sources */,
 				3D67C382282F7B5B00771072 /* Post.swift in Sources */,
+				3D2212472837668E005C0F43 /* ProfileImage.swift in Sources */,
 				3D67C380282F7AA100771072 /* User.swift in Sources */,
 				3D31C0E32833700A000832D4 /* LoginView.swift in Sources */,
 				3D67C36F282F7A4700771072 /* coffeehiApp.swift in Sources */,
