@@ -23,6 +23,7 @@ struct TrendingView: View {
                     Text("Trending")
                         .bold()
                         .font(.title2)
+                        .padding(.bottom)
                     
                     VStack(alignment: .leading, spacing: 8.0) {
                         Text("Modern French Press")
@@ -37,6 +38,7 @@ struct TrendingView: View {
                     Text("Top Posts")
                         .bold()
                         .font(.title2)
+                        .padding(.bottom)
                     
                     HStack {
                         Rectangle()

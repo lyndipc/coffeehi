@@ -26,7 +26,6 @@ struct LoginView: View {
                     }
                     
                     Text("a place to share a cup of caffeinated magic with some friends")
-                        .tracking(2)
                         .frame(width: g.size.width / 2)
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
