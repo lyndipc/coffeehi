@@ -17,58 +17,68 @@ struct TrendingView: View {
             
             Spacer()
             
-            VStack(alignment: .leading) {
-                
-                VStack(alignment: .leading, spacing: 10.0) {
-                    Text("Trending")
-                        .bold()
-                        .font(.title2)
-                        .padding(.bottom)
+            GeometryReader { g in
+
+                VStack {
                     
-                    VStack(alignment: .leading, spacing: 8.0) {
-                        Text("Modern French Press")
-                        Text("Clean Coffee Setups")
-                        Text("Show Off Your Mugs!")
-                        Text("Latte Art")
-                    }
-                    .padding(.leading)
-                    
-                    Spacer()
-                    
-                    Text("Top Posts")
-                        .bold()
-                        .font(.title2)
-                        .padding(.bottom)
-                    
-                    HStack {
-                        Rectangle()
-                            .fill(Color(lightGray))
-                            .frame(width: 150, height: 150)
-                            .cornerRadius(5)
+                    VStack(alignment: .leading) {
                         
-                        Rectangle()
-                            .fill(Color(lightGray))
-                            .frame(width: 150, height: 150)
-                            .cornerRadius(5)
-                    }
-                    
-                    HStack {
-                        Rectangle()
-                            .fill(Color(lightGray))
-                            .frame(width: 150, height: 150)
-                            .cornerRadius(5)
+                        VStack(alignment: .leading, spacing: 10.0) {
+                            Text("Trending")
+                                .bold()
+                                .font(.title2)
+                                .padding(.bottom)
+                            
+                            VStack(alignment: .leading, spacing: 8.0) {
+                                Text("Modern French Press")
+                                Text("Clean Coffee Setups")
+                                Text("Show Off Your Mugs!")
+                                Text("Latte Art")
+                            }
+                            .padding(.leading)
+                            
+                            Spacer()
+                            
+                            Text("Top Posts")
+                                .bold()
+                                .font(.title2)
+                                .padding(.bottom)
+                            
+                            HStack {
+                                Rectangle()
+                                    .fill(Color(lightGray))
+                                    .frame(width: 150, height: 150)
+                                    .cornerRadius(5)
+                                
+                                Rectangle()
+                                    .fill(Color(lightGray))
+                                    .frame(width: 150, height: 150)
+                                    .cornerRadius(5)
+                            }
+                            
+                            HStack {
+                                Rectangle()
+                                    .fill(Color(lightGray))
+                                    .frame(width: 150, height: 150)
+                                    .cornerRadius(5)
+                                
+                                Rectangle()
+                                    .fill(Color(lightGray))
+                                    .frame(width: 150, height: 150)
+                                    .cornerRadius(5)
+                            }
                         
-                        Rectangle()
-                            .fill(Color(lightGray))
-                            .frame(width: 150, height: 150)
-                            .cornerRadius(5)
+                            Spacer()
+                        }
                     }
-                
-                    Spacer()
+                    .padding(.top)
+                    .foregroundColor(Color(primaryColor))
+                    
+                    NavBar()
+                        .frame(height: .infinity, alignment: .bottom)
                 }
+                .ignoresSafeArea(edges: [.bottom])
             }
-            .padding(.top)
-            .foregroundColor(Color(primaryColor))
         }
     }
 }

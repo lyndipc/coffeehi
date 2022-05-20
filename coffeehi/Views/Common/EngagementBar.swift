@@ -25,7 +25,6 @@ struct EngagementBar: View {
                 Text("4")
                     .foregroundColor(Color(primaryColor))
             }
-            
         }
     }
 }

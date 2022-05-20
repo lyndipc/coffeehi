@@ -10,9 +10,9 @@ import SwiftUI
 struct NavBar: View {
     
     var body: some View {
-        
+            
         GeometryReader { g in
-                
+            
             HStack(spacing: 45.0) {
                 
                 Image("house")
@@ -26,23 +26,19 @@ struct NavBar: View {
                     .scaledToFit()
                     .frame(height: 25)
                 
+                
                 Image("square-plus")
                     .resizable()
                     .scaledToFit()
                     .frame(height: 25)
-                
+                    
                 Image("bell")
                     .resizable()
                     .scaledToFit()
                     .frame(height: 25)
                 
                 // TODO: Profile pic
-                Circle()
-                    .fill(.gray)
-                    .frame(width: 35)
-                    .padding(.trailing, 5.0)
-                
-
+                ProfileImage(width: 35, photo: "travis")
             }
             .frame(width: g.size.width, height: 75)
         }

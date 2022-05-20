@@ -18,7 +18,7 @@ struct PostView: View {
             HStack(spacing: 0.0) {
                     
                 // MARK: Profile image
-                ProfileImage(width: 50.0)
+                ProfileImage(width: 50.0, photo: "ben")
                     
                 // MARK: User's display name
                 Text("Ben Thompson")

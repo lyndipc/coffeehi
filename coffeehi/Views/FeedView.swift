@@ -38,11 +38,10 @@ struct FeedView: View {
                         
                     }
                     .frame(width: g.size.width - 30)
-                    
                 }
             }
-            .ignoresSafeArea(edges: [.bottom])
         }
+        .ignoresSafeArea(edges: [.bottom])
     }
 }
 
