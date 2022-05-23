@@ -11,20 +11,17 @@ struct PostDetailView: View {
     var body: some View {
         
         GeometryReader { g in
-                
+            
             ScrollView {
                 
-                LazyVStack(pinnedViews: [.sectionFooters]) {
-                
-                    Section(footer: NavBar()) {
-                        
-                        LogoHeader()
-                        
-                        PostView(width: g.size.width - 30)
-                            .frame(maxHeight: 600)
-                        
-                        // TODO: Add comments
-                    }
+                LazyVStack {
+                    
+                    LogoHeader()
+                    
+                    PostView(width: g.size.width - 30)
+                        .frame(maxHeight: 600)
+                    
+                    // TODO: Add comments
                 }
             }
         }

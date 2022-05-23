@@ -16,7 +16,6 @@
 		3D67C376282F7A4A00771072 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C375282F7A4A00771072 /* Preview Assets.xcassets */; };
 		3D67C380282F7AA100771072 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D67C37F282F7AA100771072 /* User.swift */; };
 		3D67C382282F7B5B00771072 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D67C381282F7B5B00771072 /* Post.swift */; };
-		3D85E532283413E500ED7B4A /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D85E531283413E500ED7B4A /* NavBar.swift */; };
 		3D85E5342834261B00ED7B4A /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D85E5332834261B00ED7B4A /* FeedView.swift */; };
 		3DA5608C28343DF200176B53 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA5608B28343DF200176B53 /* PostView.swift */; };
 		3DA5608E2834543200176B53 /* EngagementBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA5608D2834543200176B53 /* EngagementBar.swift */; };
@@ -36,7 +35,6 @@
 		3D67C375282F7A4A00771072 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3D67C37F282F7AA100771072 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3D67C381282F7B5B00771072 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		3D85E531283413E500ED7B4A /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		3D85E5332834261B00ED7B4A /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		3DA5608B28343DF200176B53 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		3DA5608D2834543200176B53 /* EngagementBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngagementBar.swift; sourceTree = "<group>"; };
@@ -69,7 +67,6 @@
 			children = (
 				3DA5608D2834543200176B53 /* EngagementBar.swift */,
 				3DAA981528369D3800AAD340 /* LogoHeader.swift */,
-				3D85E531283413E500ED7B4A /* NavBar.swift */,
 				3D2212462837668E005C0F43 /* ProfileImage.swift */,
 			);
 			path = Common;
@@ -234,7 +231,6 @@
 				3D67C380282F7AA100771072 /* User.swift in Sources */,
 				3D31C0E32833700A000832D4 /* LoginView.swift in Sources */,
 				3D67C36F282F7A4700771072 /* coffeehiApp.swift in Sources */,
-				3D85E532283413E500ED7B4A /* NavBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

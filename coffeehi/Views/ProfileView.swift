@@ -28,7 +28,7 @@ struct ProfileView: View {
                         .offset(y: g.size.height / 24)
                     
                     HStack(spacing: 40.0) {
-                     
+                        
                         // User's display name
                         Text("Travis Sims")
                             .bold()
@@ -41,7 +41,7 @@ struct ProfileView: View {
                         // TODO: Add conditional rendering based on whether it's user's own profile or not
                         Circle()
                             .frame(width: 50)
-                           .offset(x: -10, y: g.size.height / 9)
+                            .offset(x: -10, y: g.size.height / 9)
                     }
                     
                 }
@@ -57,16 +57,13 @@ struct ProfileView: View {
                     
                     Divider()
                     
-                    LazyVStack(pinnedViews: [.sectionFooters]) {
+                    LazyVStack {
                         
-                        Section(footer: NavBar()) {
+                        ForEach(0..<10) {_ in
                             
-                            ForEach(0..<10) {_ in
-                                
-                                PostView(width: g.size.width - 30)
-                                    .padding(.top)
-                                    .frame(maxHeight: 600)
-                            }
+                            PostView(width: g.size.width - 30)
+                                .padding(.top)
+                                .frame(maxHeight: 600)
                         }
                     }
                 }
