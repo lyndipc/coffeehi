@@ -15,10 +15,10 @@ struct FeedView: View {
         
         GeometryReader { g in
             
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 
                 // Display posts in home feed
-                LazyVStack(alignment: .center, spacing: 5.0) {
+                LazyVStack {
                     
                     LogoHeader()
                     
@@ -28,8 +28,7 @@ struct FeedView: View {
                     ForEach(0..<10) {index in
                         
                         PostView(width: width)
-                            .padding(.top)
-                            .frame(maxHeight: 600)
+                            .padding([.top, .leading, .trailing])
                     }
                 }
             }

@@ -12,7 +12,7 @@ struct ProfileView: View {
         
         GeometryReader { g in
             
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 
                 VStack {
                     

@@ -11,7 +11,7 @@ struct NotificationView: View {
     var body: some View {
         GeometryReader { g in
             
-            VStack {
+            ScrollView(showsIndicators: false) {
                 
                 Text("Notifications")
                     .padding([.top, .bottom])

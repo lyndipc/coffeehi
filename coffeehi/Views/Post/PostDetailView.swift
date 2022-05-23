@@ -12,7 +12,7 @@ struct PostDetailView: View {
         
         GeometryReader { g in
             
-            ScrollView {
+            ScrollView(showIndicators: false) {
                 
                 LazyVStack {
                     
