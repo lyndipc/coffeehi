@@ -14,46 +14,37 @@ struct ProfileView: View {
             
             ScrollView {
                 
-                ZStack {
+                VStack {
                     
-                    // TODO: Allow user to upload and adjust cover photo
-                    Image("cover")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: g.size.width, height: 200)
-                        .clipped()
-                    
-                    ProfileImage(width: 80, photo: "travis")
-                        .padding(.top, g.size.height / 8)
-                        .offset(y: g.size.height / 24)
-                    
-                    HStack(spacing: 40.0) {
+                    VStack {
+                        
+                        // Edit profile button
+                        // TODO: Add conditional rendering based on whether it's user's own profile or not
+                        
+                        // TODO: Swap sf symbol icon with custom
+                        Image(systemName: "pencil.circle.fill")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .foregroundColor(Color(lightGray))
+                            .position(CGPoint(x: g.size.width - 50, y: 10))
+                        
+                        ProfileImage(width: 80, photo: "travis")
                         
                         // User's display name
                         Text("Travis Sims")
                             .bold()
                             .font(.title3)
-                            .offset(x: 10, y: g.size.height / 7)
                         
-                        Spacer()
+                        // Username
+                        Text("@traviesims")
+                            .foregroundColor(.gray)
                         
-                        // Edit profile button
-                        // TODO: Add conditional rendering based on whether it's user's own profile or not
-                        Circle()
-                            .frame(width: 50)
-                            .offset(x: -10, y: g.size.height / 9)
+                        // User bio
+                        Text("barista @stonecreekcoffee ~ content creator YT/IG: @traviesims ~ exploring the world")
+                            .frame(minHeight: 30, maxHeight: 60)
+                            .frame(width: g.size.width - 85)
+                            .padding(.top)
                     }
-                    
-                }
-                .padding(.bottom, 40.0)
-                
-                VStack(spacing: 20.0) {
-                    
-                    Text("barista @stonecreekcoffee ~ content creator YT/IG: @traviesims ~ exploring the world")
-                        .font(.caption)
-                        .frame(minHeight: 30, maxHeight: 60)
-                        .frame(width: g.size.width - 85)
-                        .padding(.top)
                     
                     Divider()
                     
@@ -69,7 +60,6 @@ struct ProfileView: View {
                 }
             }
         }
-        .ignoresSafeArea()
     }
 }
 
