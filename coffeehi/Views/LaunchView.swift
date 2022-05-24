@@ -25,6 +25,8 @@ struct LaunchView: View {
                     FeedView()
                 case 1:
                     TrendingView()
+                case 2:
+                    PostDraftView()
                 case 3:
                     NotificationView()
                 case 4:
