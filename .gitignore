@@ -14,5 +14,6 @@ Package.resolved
 Pods/
 
 
-# Xcode workspace
+# Xcode workspace & user data
 *.xcworkspace
+xcuserdata/*
