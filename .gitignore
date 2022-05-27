@@ -17,3 +17,7 @@ Pods/
 # Xcode workspace & user data
 *.xcworkspace
 xcuserdata/*
+
+
+# Firebase
+GoogleService-Info.plist
