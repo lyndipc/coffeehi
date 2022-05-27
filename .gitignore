@@ -1,0 +1,18 @@
+
+# Swift Package Manager
+Packages/
+Package.pins
+Package.resolved
+*.xcodeproj
+
+
+# Build directory
+.build/
+
+
+# CocoaPods
+Pods/
+
+
+# Xcode workspace
+*.xcworkspace
