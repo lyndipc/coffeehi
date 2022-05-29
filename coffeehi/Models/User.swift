@@ -7,11 +7,12 @@
 
 import Foundation
 
-class User: Decodable, Identifiable, ObservableObject {
+struct User: Identifiable {
     
-    var userId: UUID?
-    var name: String?
-    var username: String?
-    var password: String?
-    var email: String?
+    var id: String = ""
+    var name: String = ""
+    var username: String = ""
+    var password: String = ""
+    var email: String = ""
+    var posts: [Post] = [Post]()
 }
