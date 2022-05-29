@@ -7,31 +7,21 @@
 
 import Foundation
 
-class Post: Identifiable, ObservableObject {
+struct Post: Decodable, Identifiable {
 
-    var postId: UUID?
-    var userId: UUID?
-    var username: String?
-    var name: String?
-    
-    var title: String?
-    var body: String?
-    var likeCount: Int?
-    var likesList: [String]?
-    var commentCount: Int?
-    var comments: [String]?
-    var type: String?
-    var image: String?
-    var location: Location?
-    var recipe: Recipe?
-}
+    var id: String = ""
+    var userId: String = ""
+    var username: String = ""
+    var name: String = ""
 
-struct Recipe {
-    
-    var recipeId: UUID?
-    var recipeTitle: String?
-    var recipeIngredients: [String]?
-    var recipeDirections: [String]?
+    var title: String = ""
+    var body: String = ""
+    var likeCount: Int = 0
+    var likeList: [String] = [""]
+    var commentCount: Int = 0
+    var commentList: [String] = [""]
+    var image: String = ""
+    var location: [Location] = [Location]()
 }
 
 struct Location: Decodable {

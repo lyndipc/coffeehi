@@ -11,6 +11,8 @@ let lightGray = UIColor(red: 0.898, green: 0.898, blue: 0.898, alpha: 1)
 
 struct FeedView: View {
     
+    @EnvironmentObject var model: ContentModel
+    
     var body: some View {
         
         GeometryReader { g in
