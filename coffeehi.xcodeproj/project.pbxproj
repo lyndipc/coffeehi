@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D0D8FAA28418655005D6DFC /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3D0D8FA928418655005D6DFC /* FirebaseAnalytics */; };
-		3D0D8FAC28418655005D6DFC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3D0D8FAB28418655005D6DFC /* FirebaseFirestore */; };
 		3D0D8FAE284196CD005D6DFC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D0D8FAD284196CD005D6DFC /* GoogleService-Info.plist */; };
 		3D22124528376545005C0F43 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D22124428376545005C0F43 /* ProfileView.swift */; };
 		3D2212472837668E005C0F43 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2212462837668E005C0F43 /* ProfileImage.swift */; };
@@ -17,20 +15,25 @@
 		3D67C371282F7A4700771072 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D67C370282F7A4700771072 /* LaunchView.swift */; };
 		3D67C373282F7A4A00771072 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C372282F7A4A00771072 /* Assets.xcassets */; };
 		3D67C376282F7A4A00771072 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D67C375282F7A4A00771072 /* Preview Assets.xcassets */; };
-		3D67C380282F7AA100771072 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D67C37F282F7AA100771072 /* User.swift */; };
 		3D67C382282F7B5B00771072 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D67C381282F7B5B00771072 /* Post.swift */; };
 		3D85E5342834261B00ED7B4A /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D85E5332834261B00ED7B4A /* FeedView.swift */; };
 		3D95C9DA283C25890006EC30 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D95C9D9283C25890006EC30 /* NotificationView.swift */; };
 		3D95C9DC283C2FDE0006EC30 /* PostDraftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D95C9DB283C2FDE0006EC30 /* PostDraftView.swift */; };
 		3D9C73A72842B5DA00244B60 /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C73A62842B5DA00244B60 /* ContentModel.swift */; };
+		3D9E8EDD2848A36A00FA0599 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9E8EDC2848A36A00FA0599 /* Constants.swift */; };
+		3D9E8EDF2848A67E00FA0599 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9E8EDE2848A67E00FA0599 /* UserService.swift */; };
+		3D9E8EE12848A6B700FA0599 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9E8EE02848A6B700FA0599 /* User.swift */; };
 		3DA5608C28343DF200176B53 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA5608B28343DF200176B53 /* PostView.swift */; };
 		3DA5608E2834543200176B53 /* EngagementBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA5608D2834543200176B53 /* EngagementBar.swift */; };
 		3DAA981628369D3800AAD340 /* LogoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA981528369D3800AAD340 /* LogoHeader.swift */; };
 		3DAA981828369FD100AAD340 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA981728369FD100AAD340 /* PostDetailView.swift */; };
 		3DAA981A2836AE1D00AAD340 /* TrendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA98192836AE1D00AAD340 /* TrendingView.swift */; };
+		469EB7CC57865816AB763B5E /* Pods_coffeehi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83D878AF5D48F1169380C53 /* Pods_coffeehi.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07BDA29D214D917117F09EF6 /* Pods-coffeehi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coffeehi.debug.xcconfig"; path = "Target Support Files/Pods-coffeehi/Pods-coffeehi.debug.xcconfig"; sourceTree = "<group>"; };
+		3AF69E10356AC1B3FE318D83 /* Pods-coffeehi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coffeehi.release.xcconfig"; path = "Target Support Files/Pods-coffeehi/Pods-coffeehi.release.xcconfig"; sourceTree = "<group>"; };
 		3D0D8FAD284196CD005D6DFC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D22124428376545005C0F43 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3D2212462837668E005C0F43 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
@@ -40,17 +43,20 @@
 		3D67C370282F7A4700771072 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		3D67C372282F7A4A00771072 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D67C375282F7A4A00771072 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		3D67C37F282F7AA100771072 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3D67C381282F7B5B00771072 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		3D85E5332834261B00ED7B4A /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		3D95C9D9283C25890006EC30 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		3D95C9DB283C2FDE0006EC30 /* PostDraftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDraftView.swift; sourceTree = "<group>"; };
 		3D9C73A62842B5DA00244B60 /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
+		3D9E8EDC2848A36A00FA0599 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3D9E8EDE2848A67E00FA0599 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		3D9E8EE02848A6B700FA0599 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3DA5608B28343DF200176B53 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		3DA5608D2834543200176B53 /* EngagementBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngagementBar.swift; sourceTree = "<group>"; };
 		3DAA981528369D3800AAD340 /* LogoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoHeader.swift; sourceTree = "<group>"; };
 		3DAA981728369FD100AAD340 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		3DAA98192836AE1D00AAD340 /* TrendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingView.swift; sourceTree = "<group>"; };
+		D83D878AF5D48F1169380C53 /* Pods_coffeehi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_coffeehi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,14 +64,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D0D8FAA28418655005D6DFC /* FirebaseAnalytics in Frameworks */,
-				3D0D8FAC28418655005D6DFC /* FirebaseFirestore in Frameworks */,
+				469EB7CC57865816AB763B5E /* Pods_coffeehi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06CF70B6DCE4141CC81CD681 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				07BDA29D214D917117F09EF6 /* Pods-coffeehi.debug.xcconfig */,
+				3AF69E10356AC1B3FE318D83 /* Pods-coffeehi.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		20C897D2D286C15BC14D1F85 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D83D878AF5D48F1169380C53 /* Pods_coffeehi.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3D31C0E428337A59000832D4 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +111,8 @@
 			children = (
 				3D67C36D282F7A4700771072 /* coffeehi */,
 				3D67C36C282F7A4700771072 /* Products */,
+				06CF70B6DCE4141CC81CD681 /* Pods */,
+				20C897D2D286C15BC14D1F85 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +129,7 @@
 			children = (
 				3D0D8FAD284196CD005D6DFC /* GoogleService-Info.plist */,
 				3D67C36E282F7A4700771072 /* coffeehiApp.swift */,
+				3D9E8EDB2848A35900FA0599 /* Helpers */,
 				3D67C37E282F7A7B00771072 /* Models */,
 				3D67C37D282F7A7000771072 /* ViewModels */,
 				3D67C37C282F7A6500771072 /* Views */,
@@ -148,10 +173,19 @@
 		3D67C37E282F7A7B00771072 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3D67C37F282F7AA100771072 /* User.swift */,
 				3D67C381282F7B5B00771072 /* Post.swift */,
+				3D9E8EE02848A6B700FA0599 /* User.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		3D9E8EDB2848A35900FA0599 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3D9E8EDC2848A36A00FA0599 /* Constants.swift */,
+				3D9E8EDE2848A67E00FA0599 /* UserService.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		3DAA981428369CF300AAD340 /* Post */ = {
@@ -171,9 +205,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D67C379282F7A4A00771072 /* Build configuration list for PBXNativeTarget "coffeehi" */;
 			buildPhases = (
+				DFB43D16637888635CFF9FCC /* [CP] Check Pods Manifest.lock */,
 				3D67C367282F7A4700771072 /* Sources */,
 				3D67C368282F7A4700771072 /* Frameworks */,
 				3D67C369282F7A4700771072 /* Resources */,
+				E1BDA39E6AB5C5AF425E53D6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -181,8 +217,6 @@
 			);
 			name = coffeehi;
 			packageProductDependencies = (
-				3D0D8FA928418655005D6DFC /* FirebaseAnalytics */,
-				3D0D8FAB28418655005D6DFC /* FirebaseFirestore */,
 			);
 			productName = coffeehi;
 			productReference = 3D67C36B282F7A4700771072 /* coffeehi.app */;
@@ -213,7 +247,6 @@
 			);
 			mainGroup = 3D67C362282F7A4700771072;
 			packageReferences = (
-				3D0D8FA828418655005D6DFC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 3D67C36C282F7A4700771072 /* Products */;
 			projectDirPath = "";
@@ -237,6 +270,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		DFB43D16637888635CFF9FCC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-coffeehi-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E1BDA39E6AB5C5AF425E53D6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-coffeehi/Pods-coffeehi-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-coffeehi/Pods-coffeehi-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-coffeehi/Pods-coffeehi-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3D67C367282F7A4700771072 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -248,14 +323,16 @@
 				3DAA981628369D3800AAD340 /* LogoHeader.swift in Sources */,
 				3DAA981A2836AE1D00AAD340 /* TrendingView.swift in Sources */,
 				3D85E5342834261B00ED7B4A /* FeedView.swift in Sources */,
+				3D9E8EDF2848A67E00FA0599 /* UserService.swift in Sources */,
 				3D95C9DC283C2FDE0006EC30 /* PostDraftView.swift in Sources */,
+				3D9E8EDD2848A36A00FA0599 /* Constants.swift in Sources */,
 				3D67C371282F7A4700771072 /* LaunchView.swift in Sources */,
 				3DA5608C28343DF200176B53 /* PostView.swift in Sources */,
 				3D9C73A72842B5DA00244B60 /* ContentModel.swift in Sources */,
 				3D67C382282F7B5B00771072 /* Post.swift in Sources */,
 				3D95C9DA283C25890006EC30 /* NotificationView.swift in Sources */,
+				3D9E8EE12848A6B700FA0599 /* User.swift in Sources */,
 				3D2212472837668E005C0F43 /* ProfileImage.swift in Sources */,
-				3D67C380282F7AA100771072 /* User.swift in Sources */,
 				3D31C0E32833700A000832D4 /* LoginView.swift in Sources */,
 				3D67C36F282F7A4700771072 /* coffeehiApp.swift in Sources */,
 			);
@@ -380,6 +457,7 @@
 		};
 		3D67C37A282F7A4A00771072 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07BDA29D214D917117F09EF6 /* Pods-coffeehi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -409,6 +487,7 @@
 		};
 		3D67C37B282F7A4A00771072 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AF69E10356AC1B3FE318D83 /* Pods-coffeehi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -458,30 +537,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		3D0D8FA828418655005D6DFC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		3D0D8FA928418655005D6DFC /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3D0D8FA828418655005D6DFC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		3D0D8FAB28418655005D6DFC /* FirebaseFirestore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3D0D8FA828418655005D6DFC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3D67C363282F7A4700771072 /* Project object */;
 }
