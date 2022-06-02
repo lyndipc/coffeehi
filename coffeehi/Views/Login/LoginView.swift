@@ -9,6 +9,7 @@ import SwiftUI
 import FirebaseAuth
 import FirebaseFirestore
 
+// TODO: Pull out Login and Create Account logic and create AuthView()
 struct LoginView: View {
     
     @EnvironmentObject var model: ContentModel
