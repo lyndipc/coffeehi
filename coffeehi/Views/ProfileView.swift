@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ProfileView: View {
+    
+    var name = UserService.shared.user.name
+    
     var body: some View {
         
         GeometryReader { g in
@@ -31,7 +34,7 @@ struct ProfileView: View {
                         ProfileImage(width: 80, photo: "travis")
                         
                         // User's display name
-                        Text("Travis Sims")
+                        Text(name)
                             .bold()
                             .font(.title3)
                         

@@ -9,4 +9,6 @@ import Foundation
 
 class User {
     var name: String = ""
+    var username: String = ""
+    var bio: String = ""
 }

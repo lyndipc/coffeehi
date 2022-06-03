@@ -99,7 +99,7 @@ struct LoginView: View {
                     Button {
                         
                         // Log the user in
-                        Auth.auth().signIn(withEmail: email, link: password) { result, error in
+                        Auth.auth().signIn(withEmail: email, password: password) { result, error in
                             
                             // Check for errors
                             guard error == nil else {
@@ -110,8 +110,7 @@ struct LoginView: View {
                             // Clear error message
                             self.errorMessage = nil
                             
-                            // TODO: Fetch the user meta data
-                            //                                model.getUserData()
+//                            model.getUserData()
                             
                             // Change the view to logged in view
                             model.checkLogin()

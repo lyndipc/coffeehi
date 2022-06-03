@@ -36,6 +36,17 @@ class ContentModel: ObservableObject {
     }
     
     // MARK: Data Retrieval Methods
+    
+    // Get user data
+    func getUserData() {
+        
+        // Fetch data from Firestore
+//        Auth.auth().currentUser
+        
+        // Save data in user model
+    }
+    
+    // Get user's feed
     func getRecentPosts() {
         
         // Specify path
