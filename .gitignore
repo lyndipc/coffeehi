@@ -21,3 +21,7 @@ xcuserdata/*
 
 # Firebase
 GoogleService-Info.plist
+
+
+# Other
+.DS_Store
