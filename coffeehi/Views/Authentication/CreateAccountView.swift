@@ -11,100 +11,167 @@ import FirebaseFirestore
 
 struct CreateAccountView: View {
     
+    @EnvironmentObject var model: ContentModel
     @Binding var loginMode: Constants.LoginMode
     @State var email: String = ""
     @State var password: String = ""
     @State var name: String = ""
+    @State var username: String = ""
     @State var errorMessage: String? = nil
     
-        var body: some View {
+    var body: some View {
+        
+        GeometryReader { g in
             
-            GeometryReader { g in
+            VStack(alignment: .center) {
                 
-                VStack {
+                Spacer()
+                
+                VStack(alignment: .center, spacing: 40.0) {
                     
-                    // MARK: Login Form
-                    VStack(spacing: 30.0) {
+                    // Logo
+                    HStack(spacing: 10.0) {
                         
-                        // Username text field
-                        VStack(alignment: .leading) {
+                        Text("coffeehi")
+                            .font(.largeTitle)
+                            .foregroundColor(.white)
+                            .tracking(8)
+                        Image("logo")
+                    }
+                }
+                //                .frame(width: g.size.width, height: g.size.height / 2.2)
+                
+                Spacer()
+                
+                // MARK: Login Form
+                VStack(spacing: 30.0) {
+                    
+                    // Name text field
+                    VStack(alignment: .leading) {
+                        
+                        Text("name")
+                            .foregroundColor(Color(primaryColor.cgColor))
+                            .tracking(3)
+                        
+                        ZStack {
                             
-                            Text("username")
-                                .foregroundColor(Color(primaryColor.cgColor))
-                                .tracking(3)
+                            Rectangle()
+                                .fill(Color(UIColor(red: 229, green: 229, blue: 229, alpha: 0.5)))
                             
-                            ZStack {
-                                
-                                Rectangle()
-                                    .fill(Color(UIColor(red: 229, green: 229, blue: 229, alpha: 0.5)))
-                                    .frame(width: g.size.width - 60, height: 44)
-                                    .cornerRadius(10)
-                                
-                                TextField("Email", text: $email)
-                                
-                                if errorMessage != nil {
-                                    Text(errorMessage!)
-                                }
+                            TextField("Name", text: $name)
+                                .padding(.leading)
+                            
+                            if errorMessage != nil {
+                                Text(errorMessage!)
                             }
                         }
+                        .frame(width: g.size.width - 60, height: 44)
+                        .cornerRadius(10)
+                    }
+                    
+                    // Username text field
+                    VStack(alignment: .leading) {
                         
-                        // MARK: Password text field
-                        VStack(alignment: .leading) {
+                        Text("username")
+                            .foregroundColor(Color(primaryColor.cgColor))
+                            .tracking(3)
+                        
+                        ZStack {
                             
-                            Text("password")
-                                .foregroundColor(Color(UIColor(red: 0.016, green: 0.767, blue: 0.541, alpha: 1).cgColor))
-                                .tracking(3)
+                            Rectangle()
+                                .fill(Color(UIColor(red: 229, green: 229, blue: 229, alpha: 0.5)))
                             
-                            ZStack {
-                                
-                                Rectangle()
-                                    .fill(Color(UIColor(red: 229, green: 229, blue: 229, alpha: 0.5)))
-                                    .frame(width: g.size.width - 60, height: 44)
-                                    .cornerRadius(10)
-                                
-                                SecureField("Password", text: $password)
-                                
-                                if errorMessage != nil {
-                                    Text(errorMessage!)
-                                }
+                            TextField("Username", text: $username)
+                                .padding(.leading)
+                            
+                            if errorMessage != nil {
+                                Text(errorMessage!)
                             }
-                            Text("Forgot password?")
-                                .foregroundColor(Color(primaryColor.cgColor))
-                                .underline()
-                                .font(.caption)
-                                .tracking(1)
                         }
+                        .frame(width: g.size.width - 60, height: 44)
+                        .cornerRadius(10)
+                    }
+                    
+                    // Email text field
+                    VStack(alignment: .leading) {
                         
-                        // MARK: Sign in button
-                        Button {
+                        Text("email")
+                            .foregroundColor(Color(primaryColor.cgColor))
+                            .tracking(3)
+                        
+                        ZStack {
                             
-                            // Create new account
-                            Auth.auth().createUser(withEmail: email, password: password) { result, error in
-                                
-                                // Check for errors
-                                guard error == nil else {
-                                    self.errorMessage = error!.localizedDescription
-                                    return
-                                }
-                                
-                                // Clear error message
-                                self.errorMessage = nil
-                                
-                                // Save the first name
-                                let firebaseUser = Auth.auth().currentUser
-                                let db = Firestore.firestore()
-                                let ref = db.collection("users").document(firebaseUser!.uid)
-                                
-                                ref.setData(["name": name], merge: true)
-                                
-                                // Update the user meta data
-                                let user = UserService.shared.user
-                                user.name = name
-                                
-                                // Change the view to logged in view
-                    //                                self.model.checkLogin()
+                            Rectangle()
+                                .fill(Color(UIColor(red: 229, green: 229, blue: 229, alpha: 0.5)))
+                            
+                            TextField("Email", text: $email)
+                                .padding(.leading)
+                            
+                            if errorMessage != nil {
+                                Text(errorMessage!)
+                            }
                         }
-                        } label: {
+                        .frame(width: g.size.width - 60, height: 44)
+                        .cornerRadius(10)
+                    }
+                    
+                    // Password text field
+                    VStack(alignment: .leading) {
+                        
+                        Text("password")
+                            .foregroundColor(Color(UIColor(red: 0.016, green: 0.767, blue: 0.541, alpha: 1).cgColor))
+                            .tracking(3)
+                        
+                        ZStack {
+                            
+                            Rectangle()
+                                .fill(Color(UIColor(red: 229, green: 229, blue: 229, alpha: 0.5)))
+                            
+                            SecureField("Password", text: $password)
+                                .padding(.leading)
+                            
+                            if errorMessage != nil {
+                                Text(errorMessage!)
+                            }
+                        }
+                        .frame(width: g.size.width - 60, height: 44)
+                        .cornerRadius(10)
+                    }
+                    
+                    // MARK: Sign in button
+                    Button {
+                        
+                        // Create new account
+                        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+                            
+                            // Check for errors
+                            guard error == nil else {
+                                self.errorMessage = error!.localizedDescription
+                                return
+                            }
+                            
+                            // Clear error message
+                            self.errorMessage = nil
+                            
+                            // Save the first name
+                            let firebaseUser = Auth.auth().currentUser
+                            let db = Firestore.firestore()
+                            let ref = db.collection("users").document(firebaseUser!.uid)
+                            
+                            ref.setData(["name": name,
+                                         "username": username
+                                        ], merge: true)
+                            
+                            // Update the user meta data
+                            let user = UserService.shared.user
+                            user.name = name
+                            
+                            // Change the view to logged in view
+                            self.model.checkLogin()
+                        }
+                    } label: {
+                        
+                        VStack(spacing: 25.0) {
                             
                             ZStack {
                                 
@@ -113,12 +180,12 @@ struct CreateAccountView: View {
                                     .frame(width: g.size.width - 80, height: 44)
                                     .cornerRadius(20)
                                 
-                                Text("sign in")
+                                Text("create account")
                                     .foregroundColor(.white)
                                     .tracking(3)
                             }
                             
-                            // If user taps "Create an Account" button, display switches to CreateAccountView()
+                            // If user taps button, display switches to LoginView()
                             Button {
                                 
                                 DispatchQueue.main.async {
@@ -129,15 +196,19 @@ struct CreateAccountView: View {
                                 Text("Already have an account? Sign in")
                                     .foregroundColor(Color(primaryColor.cgColor))
                                     .underline()
-                                    .font(.headline)
+                                    .font(.caption)
                                     .tracking(2)
                             }
                         }
                     }
                 }
+                
+                Spacer()
             }
-            .background(Color(UIColor(red: 0, green: 0, blue: 0, alpha: 0.68)))
+            .frame(width: g.size.width)
         }
+        .background(Color(UIColor(red: 0, green: 0, blue: 0, alpha: 0.68)))
+    }
 }
 
 //struct CreateAccountView_Previews: PreviewProvider {

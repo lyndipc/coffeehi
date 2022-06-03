@@ -12,6 +12,7 @@ import FirebaseFirestore
 // TODO: Pull out Login and Create Account logic and create AuthView()
 struct LoginView: View {
     
+    @EnvironmentObject var model: ContentModel
     @Binding var loginMode: Constants.LoginMode
     @State var email: String = ""
     @State var password: String = ""
@@ -22,6 +23,25 @@ struct LoginView: View {
         GeometryReader { g in
             
             VStack {
+                
+                VStack(alignment: .center, spacing: 40.0) {
+                    
+                    // Logo
+                    HStack(spacing: 10.0) {
+                        
+                        Text("coffeehi")
+                            .font(.largeTitle)
+                            .foregroundColor(.white)
+                            .tracking(8)
+                        Image("logo")
+                    }
+                    
+                    Text("a place to share a cup of caffeinated magic with some friends")
+                        .frame(width: g.size.width / 2)
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.center)
+                }
+                .frame(width: g.size.width, height: g.size.height / 2.2)
                 
                 // MARK: Login Form
                 VStack(spacing: 30.0) {
@@ -94,7 +114,7 @@ struct LoginView: View {
                             //                                model.getUserData()
                             
                             // Change the view to logged in view
-                            //                                model.checkLogin()
+                            model.checkLogin()
                         }
                     } label: {
                         
@@ -110,7 +130,7 @@ struct LoginView: View {
                                 .tracking(3)
                         }
                         
-                        // If user taps "Create an Account" button, display switches to CreateAccountView()
+                        // If user taps button, display switches to CreateAccountView()
                         Button {
                             
                             DispatchQueue.main.async {
