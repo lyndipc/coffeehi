@@ -39,12 +39,11 @@ struct CreateAccountView: View {
                         Image("logo")
                     }
                 }
-                //                .frame(width: g.size.width, height: g.size.height / 2.2)
                 
                 Spacer()
                 
                 // MARK: Login Form
-                VStack(spacing: 30.0) {
+                VStack(spacing: 10.0) {
                     
                     // Name text field
                     VStack(alignment: .leading) {
@@ -60,10 +59,6 @@ struct CreateAccountView: View {
                             
                             TextField("Name", text: $name)
                                 .padding(.leading)
-                            
-                            if errorMessage != nil {
-                                Text(errorMessage!)
-                            }
                         }
                         .frame(width: g.size.width - 60, height: 44)
                         .cornerRadius(10)
@@ -83,10 +78,6 @@ struct CreateAccountView: View {
                             
                             TextField("Username", text: $username)
                                 .padding(.leading)
-                            
-                            if errorMessage != nil {
-                                Text(errorMessage!)
-                            }
                         }
                         .frame(width: g.size.width - 60, height: 44)
                         .cornerRadius(10)
@@ -106,10 +97,6 @@ struct CreateAccountView: View {
                             
                             TextField("Email", text: $email)
                                 .padding(.leading)
-                            
-                            if errorMessage != nil {
-                                Text(errorMessage!)
-                            }
                         }
                         .frame(width: g.size.width - 60, height: 44)
                         .cornerRadius(10)
@@ -119,7 +106,7 @@ struct CreateAccountView: View {
                     VStack(alignment: .leading) {
                         
                         Text("password")
-                            .foregroundColor(Color(UIColor(red: 0.016, green: 0.767, blue: 0.541, alpha: 1).cgColor))
+                            .foregroundColor(Color(primaryColor.cgColor))
                             .tracking(3)
                         
                         ZStack {
@@ -129,14 +116,11 @@ struct CreateAccountView: View {
                             
                             SecureField("Password", text: $password)
                                 .padding(.leading)
-                            
-                            if errorMessage != nil {
-                                Text(errorMessage!)
-                            }
                         }
                         .frame(width: g.size.width - 60, height: 44)
                         .cornerRadius(10)
                     }
+                    .padding(.bottom, 40.0)
                     
                     // MARK: Sign in button
                     Button {
@@ -180,7 +164,7 @@ struct CreateAccountView: View {
                                     .frame(width: g.size.width - 80, height: 44)
                                     .cornerRadius(20)
                                 
-                                Text("create account")
+                                Text("Create Account")
                                     .foregroundColor(.white)
                                     .tracking(3)
                             }
@@ -193,7 +177,7 @@ struct CreateAccountView: View {
                                 }
                             } label: {
                                 
-                                Text("Already have an account? Sign in")
+                                Text("Sign In")
                                     .foregroundColor(Color(primaryColor.cgColor))
                                     .underline()
                                     .font(.caption)
@@ -201,6 +185,13 @@ struct CreateAccountView: View {
                             }
                         }
                     }
+                }
+                
+                if errorMessage != nil {
+                    Text(errorMessage!)
+                        .foregroundColor(.red)
+                        .font(.caption)
+                        .padding(.vertical)
                 }
                 
                 Spacer()

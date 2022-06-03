@@ -22,7 +22,9 @@ struct LoginView: View {
         
         GeometryReader { g in
             
-            VStack {
+            VStack(alignment: .center) {
+                
+                Spacer()
                 
                 VStack(alignment: .center, spacing: 40.0) {
                     
@@ -35,16 +37,12 @@ struct LoginView: View {
                             .tracking(8)
                         Image("logo")
                     }
-                    
-                    Text("a place to share a cup of caffeinated magic with some friends")
-                        .frame(width: g.size.width / 2)
-                        .foregroundColor(.white)
-                        .multilineTextAlignment(.center)
                 }
-                .frame(width: g.size.width, height: g.size.height / 2.2)
+                
+                Spacer()
                 
                 // MARK: Login Form
-                VStack(spacing: 30.0) {
+                VStack(spacing: 10.0) {
                     
                     // Username text field
                     VStack(alignment: .leading) {
@@ -57,43 +55,40 @@ struct LoginView: View {
                             
                             Rectangle()
                                 .fill(Color(UIColor(red: 229, green: 229, blue: 229, alpha: 0.5)))
-                                .frame(width: g.size.width - 60, height: 44)
-                                .cornerRadius(10)
                             
                             TextField("Email", text: $email)
-                            
-                            if errorMessage != nil {
-                                Text(errorMessage!)
-                            }
+                                .padding(.leading)
                         }
+                        .frame(width: g.size.width - 60, height: 44)
+                        .cornerRadius(10)
                     }
                     
                     // MARK: Password text field
                     VStack(alignment: .leading) {
                         
                         Text("password")
-                            .foregroundColor(Color(UIColor(red: 0.016, green: 0.767, blue: 0.541, alpha: 1).cgColor))
+                            .foregroundColor(Color(primaryColor.cgColor))
                             .tracking(3)
                         
                         ZStack {
                             
                             Rectangle()
                                 .fill(Color(UIColor(red: 229, green: 229, blue: 229, alpha: 0.5)))
-                                .frame(width: g.size.width - 60, height: 44)
-                                .cornerRadius(10)
                             
                             SecureField("Password", text: $password)
-                            
-                            if errorMessage != nil {
-                                Text(errorMessage!)
-                            }
+                                .padding(.leading)
                         }
+                        .frame(width: g.size.width - 60, height: 44)
+                        .cornerRadius(10)
+                        
                         Text("Forgot password?")
                             .foregroundColor(Color(primaryColor.cgColor))
                             .underline()
                             .font(.caption)
                             .tracking(1)
+                            .padding(.leading)
                     }
+                    .padding(.bottom, 30.0)
                     
                     // MARK: Sign in button
                     Button {
@@ -110,42 +105,55 @@ struct LoginView: View {
                             // Clear error message
                             self.errorMessage = nil
                             
-//                            model.getUserData()
+                            //                            model.getUserData()
                             
                             // Change the view to logged in view
                             model.checkLogin()
                         }
                     } label: {
                         
-                        ZStack {
+                        VStack(spacing: 25.0) {
                             
-                            Rectangle()
-                                .fill(Color(primaryColor.cgColor))
-                                .frame(width: g.size.width - 80, height: 44)
-                                .cornerRadius(20)
-                            
-                            Text("sign in")
-                                .foregroundColor(.white)
-                                .tracking(3)
-                        }
-                        
-                        // If user taps button, display switches to CreateAccountView()
-                        Button {
-                            
-                            DispatchQueue.main.async {
-                                loginMode = Constants.LoginMode.createAccount
+                            ZStack {
+                                
+                                Rectangle()
+                                    .fill(Color(primaryColor.cgColor))
+                                    .frame(width: g.size.width - 80, height: 44)
+                                    .cornerRadius(20)
+                                
+                                Text("Sign In")
+                                    .foregroundColor(.white)
+                                    .tracking(3)
                             }
-                        } label: {
                             
-                            Text("Create an account")
-                                .foregroundColor(Color(primaryColor.cgColor))
-                                .underline()
-                                .font(.headline)
-                                .tracking(2)
+                            // If user taps button, display switches to CreateAccountView()
+                            Button {
+                                
+                                DispatchQueue.main.async {
+                                    loginMode = Constants.LoginMode.createAccount
+                                }
+                            } label: {
+                                
+                                Text("Create An Account")
+                                    .foregroundColor(Color(primaryColor.cgColor))
+                                    .underline()
+                                    .font(.caption)
+                                    .tracking(2)
+                            }
                         }
                     }
                 }
+                
+                if errorMessage != nil {
+                    Text(errorMessage!)
+                        .foregroundColor(.red)
+                        .font(.caption)
+                        .padding(.vertical)
+                }
+                
+                Spacer()
             }
+            .frame(width: g.size.width)
         }
         .background(Color(UIColor(red: 0, green: 0, blue: 0, alpha: 0.68)))
     }
