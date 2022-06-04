@@ -9,7 +9,11 @@ import SwiftUI
 
 struct ProfileView: View {
     
+    @EnvironmentObject var model: ContentModel
+    @State var editProfileVisible = false
     var name = UserService.shared.user.name
+    var bio: String?
+    var pfp: String?
     
     var body: some View {
         
@@ -25,11 +29,21 @@ struct ProfileView: View {
                         // TODO: Add conditional rendering based on whether it's user's own profile or not
                         
                         // TODO: Swap sf symbol icon with custom
-                        Image(systemName: "pencil.circle.fill")
-                            .resizable()
-                            .frame(width: 40, height: 40)
-                            .foregroundColor(Color(lightGray))
-                            .position(CGPoint(x: g.size.width - 50, y: 10))
+                        Button {
+                            
+                            editProfileVisible = true
+                        } label: {
+                            
+                            Image(systemName: "pencil.circle.fill")
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                                .foregroundColor(Color(lightGray))
+                                .position(CGPoint(x: g.size.width - 50, y: 10))
+                        }
+                        .sheet(isPresented: $editProfileVisible) {
+                            // Dispaly profile editor
+                            EditProfileView(editProfileVisible: $editProfileVisible)
+                        }
                         
                         ProfileImage(width: 80, photo: "travis")
                         

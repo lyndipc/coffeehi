@@ -11,6 +11,9 @@ import FirebaseFirestore
 
 class ContentModel: ObservableObject {
     
+    // List of user data
+    @Published var user = [User]()
+    
     // Authentication
     @Published var loggedIn = false
     
@@ -23,12 +26,12 @@ class ContentModel: ObservableObject {
     init() {
         
         // Get recent posts
-        getRecentPosts()
+        getRecentPosts()        
     }
     
     // MARK: Authentication Methods
     func checkLogin() {
-    
+        
         // Check if there's a current user
         loggedIn = Auth.auth().currentUser != nil ? true : false
         
@@ -41,9 +44,41 @@ class ContentModel: ObservableObject {
     func getUserData() {
         
         // Fetch data from Firestore
-//        Auth.auth().currentUser
+        let userId = Auth.auth().currentUser?.uid
+        let users = db.collection("users").document(userId!)
         
-        // Save data in user model
+        users.getDocument { docSnapshot, error in
+            
+            // Create array of current user's data
+            var user = [User]()
+            
+            // If document snapshot contains data & no errors are returned
+            if error == nil && docSnapshot != nil {
+             
+                // Create new user instance
+                let u = User()
+                
+                // Extract fields from document snapshot
+                u.name = docSnapshot?.get("name") as? String ?? ""
+                u.username = docSnapshot?.get("username") as? String ?? ""
+                
+                // Extract map from document snapshot
+                let profileMap = docSnapshot?.get("profile") as! [String: Any]
+                
+                u.bio = profileMap["bio"] as? String ?? ""
+                u.pfp = profileMap["pfp"] as? String ?? ""
+                
+                user.append(u)
+            }
+            else if error != nil {
+                // Print errors
+                print(error!.localizedDescription)
+            }
+            
+            DispatchQueue.main.async {
+                self.user = user
+            }
+        }
     }
     
     // Get user's feed
@@ -84,6 +119,21 @@ class ContentModel: ObservableObject {
             else {
                 print("------ Error")
             }
+        }
+    }
+    
+    // MARK: Data Mutation Methods
+    func updateProfile(bio: String?, pfp: String?) {
+        let users = db.collection("users")
+        
+        // Check that currentUser is not nil
+        if let userId = Auth.auth().currentUser?.uid {
+            
+            // Update profile info
+            users.document(userId).updateData(["profile": [
+                "bio": bio ?? "",
+                "pfp": pfp ?? ""
+            ]])
         }
     }
 }

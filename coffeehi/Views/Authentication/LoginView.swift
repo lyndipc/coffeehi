@@ -105,7 +105,7 @@ struct LoginView: View {
                             // Clear error message
                             self.errorMessage = nil
                             
-                            //                            model.getUserData()
+                            model.getUserData()
                             
                             // Change the view to logged in view
                             model.checkLogin()

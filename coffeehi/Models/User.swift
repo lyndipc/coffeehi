@@ -7,8 +7,9 @@
 
 import Foundation
 
-class User {
+class User: Decodable {
     var name: String = ""
     var username: String = ""
     var bio: String = ""
+    var pfp: String = ""
 }
