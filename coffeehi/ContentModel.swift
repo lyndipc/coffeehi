@@ -21,16 +21,18 @@ class ContentModel: ObservableObject {
     @Published var loggedIn = false
     
     // List of posts
-    @Published var posts = [Post]()
+    @Published var posts: [Post] = [Post]()
+    
+    // Post body
+    private var postBody: String?
     
     init() {
-        
-        // Get recent posts
-        getRecentPosts()        
+
     }
     
-    
     // MARK: Authentication Methods
+    
+    // Check if user is logged in
     func checkLogin() {
         
         // Check if there's a current user
@@ -55,7 +57,7 @@ class ContentModel: ObservableObject {
             
             users.getDocument { docSnapshot, error in
                 
-                // Create array of current user's data
+                // Create reference to logged in User
                 let user = UserService.shared.user
                 
                 // If document snapshot contains data & no errors are returned
@@ -64,16 +66,20 @@ class ContentModel: ObservableObject {
                     return
                 }
                 
-                // Extract fields from document snapshot
+                // Extract fields from document snapshot and store in UserService
                 user.name = docSnapshot?.get("name") as? String ?? ""
                 user.username = docSnapshot?.get("username") as? String ?? ""
                 
                 // Extract map from document snapshot
                 let profileMap = docSnapshot?.get("profile") as! [String: Any]
                 
+                // Store profile data in UserService
                 user.bio = profileMap["bio"] as? String ?? ""
                 user.pfp = profileMap["pfp"] as? String ?? ""
             }
+            
+            // Update user's feed
+            getRecentPosts()
         }
         else {
             
@@ -81,7 +87,9 @@ class ContentModel: ObservableObject {
         }
     }
     
-    // Get user's feed
+    // TODO: Add listener to update user's feed as soon as a new post is successfully created, mutated, etc.
+    
+    // Get user's feed of recent posts
     func getRecentPosts() {
         
         // Specify path
@@ -90,40 +98,76 @@ class ContentModel: ObservableObject {
         // Get documents
         recentPostCollection.getDocuments { querySnapshot, error in
             
-            if error == nil && querySnapshot != nil {
+            // Check for errors retrieving documents
+            guard error == nil, querySnapshot != nil else {
+                print("Error retrieving post data")
+                print(error!.localizedDescription)
+                return
+            }
+            
+            // Reference to local post instance
+            
+            
+            // Store post data in local instance
+            for doc in querySnapshot!.documents {
                 
-                // Create an array for posts
-                var recentPosts = [Post]()
-                
-                for doc in querySnapshot!.documents {
-                    
-                    // Create new post instance
-                    var p = Post()
+                // Create property to store each post's data
+                var p = Post()
                     
                     // Parse values from doc into post instance
                     p.id = doc["id"] as? String ?? UUID().uuidString
                     p.body = doc["body"] as? String ?? ""
                     p.commentCount = doc["commentCount"] as? Int ?? 0
                     p.likeCount = doc["likeCount"] as? Int ?? 0
-                    
-                    recentPosts.append(p)
-                    print("Recent posts: \(recentPosts)")
-                }
-                
-                // Assign posts to published property
-                DispatchQueue.main.async {
-                    
-                    self.posts = recentPosts
-                }
+                    p.name = doc["name"] as? String ?? ""
+                    p.username = doc["username"] as? String ?? ""
             }
-            else {
-                print("------ Error")
+            
+            DispatchQueue.main.async {
+                
+                // Set all post data to local service
             }
         }
     }
     
     
     // MARK: Data Mutation Methods
+    
+    // Create new post
+    func createPost(postBody: String?) {
+        
+        guard Auth.auth().currentUser != nil else {
+            print("User not authenticated")
+            return
+        }
+        
+        // Current user id
+        let userId = Auth.auth().currentUser?.uid
+        
+        // Store post data in dict
+        let postData: [String: Any] = [
+            "userId": userId!,
+            "body": postBody ?? ""
+        ]
+        
+        // Firestore post collection path
+        let newPost = db.collection("post")
+        
+        // Add new post data to firestore
+        newPost.addDocument(data: postData) { error in
+            
+            if error != nil {
+                print("Problem adding post to database")
+                print(error!.localizedDescription)
+                
+            }
+            else {
+                print("Post created successfully")
+            }
+        }
+    }
+    
+    // Update user's profile
     func updateProfile(bio: String?, pfp: String?) {
         
         // Check that there is a valid user
@@ -144,5 +188,7 @@ class ContentModel: ObservableObject {
                 "pfp": pfp ?? ""
             ]])
         }
+        
+        // TODO: Update UI after profile has been changed
     }
 }

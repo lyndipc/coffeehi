@@ -9,11 +9,16 @@ import SwiftUI
 
 struct PostView: View {
     
+    // TODO: Add local post service reference
+    
     var width: CGFloat?
     
     var body: some View {
         
         VStack(alignment: .leading) {
+            
+            // Loop through post data to display in FeedView
+//            for p in post {
                 
             HStack(spacing: 0.0) {
                     
@@ -52,6 +57,8 @@ struct PostView: View {
             Divider()
                 .background(Color.gray)
                 .padding([.leading, .trailing])
+                
+//            }
         }
     }
 }
@@ -59,7 +66,6 @@ struct PostView: View {
 struct PostView_Previews: PreviewProvider {
     static var previews: some View {
         
-        // Embedded in GeometryReader & ScrollView to simulate FeedView presentation
         GeometryReader { g in
             
             ScrollView {
