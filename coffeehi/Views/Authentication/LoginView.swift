@@ -45,23 +45,7 @@ struct LoginView: View {
                 VStack(spacing: 10.0) {
                     
                     // Username text field
-                    VStack(alignment: .leading) {
-                        
-                        Text("username")
-                            .foregroundColor(Color(primaryColor.cgColor))
-                            .tracking(3)
-                        
-                        ZStack {
-                            
-                            Rectangle()
-                                .fill(Color(UIColor(red: 229, green: 229, blue: 229, alpha: 0.5)))
-                            
-                            TextField("Email", text: $email)
-                                .padding(.leading)
-                        }
-                        .frame(width: g.size.width - 60, height: 44)
-                        .cornerRadius(10)
-                    }
+                    FormField(value: $email, label: "email", placeholder: "Email", width: g.size.width - 60)
                     
                     // MARK: Password text field
                     VStack(alignment: .leading) {
@@ -73,7 +57,7 @@ struct LoginView: View {
                         ZStack {
                             
                             Rectangle()
-                                .fill(Color(UIColor(red: 229, green: 229, blue: 229, alpha: 0.5)))
+                                .fill(Color(offWhite.cgColor))
                             
                             SecureField("Password", text: $password)
                                 .padding(.leading)
@@ -125,22 +109,22 @@ struct LoginView: View {
                                     .foregroundColor(.white)
                                     .tracking(3)
                             }
-                            
-                            // If user taps button, display switches to CreateAccountView()
-                            Button {
-                                
-                                DispatchQueue.main.async {
-                                    loginMode = Constants.LoginMode.createAccount
-                                }
-                            } label: {
-                                
-                                Text("Create An Account")
-                                    .foregroundColor(Color(primaryColor.cgColor))
-                                    .underline()
-                                    .font(.caption)
-                                    .tracking(2)
-                            }
                         }
+                    }
+                    
+                    // If user taps button, display switches to CreateAccountView()
+                    Button {
+                        
+                        DispatchQueue.main.async {
+                            loginMode = Constants.LoginMode.createAccount
+                        }
+                    } label: {
+                        
+                        Text("Create An Account")
+                            .foregroundColor(Color(primaryColor.cgColor))
+                            .underline()
+                            .font(.caption)
+                            .tracking(2)
                     }
                 }
                 

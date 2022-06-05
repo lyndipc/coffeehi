@@ -18,24 +18,40 @@ struct EditProfileView: View {
     
     var body: some View {
         
-        // Change profile image
-        TextField("PFP", text: $pfp)
-        
-        // Update bio
-        TextField("Bio", text: $bio)
-        
-        // Save data button
-        Button {
-            model.updateProfile(bio: bio, pfp: pfp)
+        GeometryReader { g in
             
-            // Dismiss sheet
-            DispatchQueue.main.async {
-                editProfileVisible = false
+            VStack(alignment: .center) {
+                
+                Spacer()
+                
+                VStack(spacing: 25.0) {
+                    // Change profile image
+                    FormField(value: $pfp, label: "profile image", placeholder: "Profile Image", width: g.size.width - 60)
+                    
+                    // Update bio
+                    FormField(value: $bio, label: "bio", placeholder: "Bio", width: g.size.width - 60)
+                }
+                
+                Spacer()
+                
+                // Save data button
+                Button {
+                    model.updateProfile(bio: bio, pfp: pfp)
+                    
+                    // Dismiss sheet
+                    DispatchQueue.main.async {
+                        editProfileVisible = false
+                    }
+                } label: {
+                    ThemeButton(buttonText: "Save", width: g.size.width - 80)
+                }
+                .frame(width: g.size.width - 100, height: 48)
+                
+                Spacer()
             }
-        } label: {
-            Text("Save")
+            .frame(width: g.size.width)
         }
-
+        .background(Color(darkGray.cgColor))
     }
 }
 

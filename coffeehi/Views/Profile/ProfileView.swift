@@ -41,7 +41,7 @@ struct ProfileView: View {
                                 .position(CGPoint(x: g.size.width - 50, y: 10))
                         }
                         .sheet(isPresented: $editProfileVisible) {
-                            // Dispaly profile editor
+                            // Display profile editor
                             EditProfileView(editProfileVisible: $editProfileVisible)
                         }
                         
