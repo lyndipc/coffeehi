@@ -56,7 +56,7 @@ struct EditProfileView: View {
                     }
                 } label: {
                     
-                    ThemeButton(buttonText: "Save", width: g.size.width - 80)
+                    ThemeButtonLabel(buttonText: "Update Profile", width: g.size.width - 80, tracking: 0)
                 }
                 .frame(width: g.size.width - 100, height: 48)
                 

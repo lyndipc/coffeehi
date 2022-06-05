@@ -1,5 +1,5 @@
 //
-//  ThemeButton.swift
+//  ThemeButtonLabel.swift
 //  coffeehi
 //
 //  Created by Lyndi Castrejon on 6/4/22.
@@ -7,35 +7,37 @@
 
 import SwiftUI
 
-struct ThemeButton: View {
+struct ThemeButtonLabel: View {
     
     var buttonText: String
     var width: CGFloat
+    var height: CGFloat?
+    var tracking: CGFloat?
     
     var body: some View {
         
-        // TODO: Add parameter to pass in button method/action
         ZStack {
             
             Rectangle()
                 .fill(Color(primaryColor.cgColor))
-                .frame(width: width, height: 44)
+                .frame(width: width, height: height ?? 44)
                 .cornerRadius(20)
             
             Text(buttonText)
+                .bold()
                 .foregroundColor(.white)
-                .tracking(3)
+                .tracking(tracking ?? 3)
         }
     }
 }
 
-struct ThemeButton_Previews: PreviewProvider {
+struct ThemeButtonLabel_Previews: PreviewProvider {
     
     static var previews: some View {
         
         GeometryReader { g in
          
-            ThemeButton(buttonText: "Button Text", width: g.size.width - 80)
+            ThemeButtonLabel(buttonText: "Button Text", width: g.size.width - 80)
         }
     }
 }

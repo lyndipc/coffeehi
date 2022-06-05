@@ -8,6 +8,15 @@
 import SwiftUI
 
 struct PostDraftView: View {
+    
+    @EnvironmentObject var model: ContentModel
+    @State var postBody: String = ""
+    
+    // Remove default background color on text editor
+    init() {
+        UITextView.appearance().backgroundColor = .clear
+    }
+    
     var body: some View {
         
         GeometryReader { g in
@@ -24,17 +33,22 @@ struct PostDraftView: View {
                     
                     VStack(alignment: .leading) {
                         
-                        HStack {
+                        HStack(alignment: .top) {
                             
                             ProfileImage(width: 35, photo: "travis")
-                            Text("Share something...")
-                            
+
+                            TextEditor(text: $postBody)
+                                .foregroundColor(Color(primaryColor))
+                                .background(Color(lightGray))
+                        
                             Spacer()
                         }
                         .padding()
                         
                         Spacer()
                         
+                        // TODO: If canceled, prompt user if they would like to save as draft
+                        // TODO: Create "draftPost" method
                         HStack {
                             
                             Button(action: {}, label: {
@@ -46,16 +60,13 @@ struct PostDraftView: View {
                             
                             Spacer()
                             
-                            ZStack {
+                            Button {
                                 
-                                Rectangle()
-                                    .fill(Color(primaryColor))
-                                    .frame(width: 100, height: 35)
-                                    .cornerRadius(20)
+                                // Method
+                                model.createPost(postBody: postBody)
+                            } label: {
                                 
-                                Text("Post")
-                                    .bold()
-                                    .foregroundColor(.white)
+                                ThemeButtonLabel(buttonText: "Post", width: 100, height: 35, tracking: 0)
                             }
                         }
                         .padding([.leading, .trailing], 25)
