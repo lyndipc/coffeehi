@@ -76,6 +76,7 @@ struct ProfileView: View {
                         Text("@\(user.username)")
                             .foregroundColor(.gray)
                         
+                        // TODO: Update user bio after saving new data
                         // User bio
                         Text(user.bio)
                             .frame(minHeight: 30, maxHeight: 60)
