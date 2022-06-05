@@ -11,14 +11,14 @@ import FirebaseFirestore
 
 class ContentModel: ObservableObject {
     
+    // Reference to Cloud Firestore
+    let db = FirebaseFirestore.Firestore.firestore()
+    
     // List of user data
     @Published var user = [User]()
     
     // Authentication
     @Published var loggedIn = false
-    
-    // Reference to Cloud Firestore database
-    let db = FirebaseFirestore.Firestore.firestore()
     
     // List of posts
     @Published var posts = [Post]()
@@ -29,6 +29,7 @@ class ContentModel: ObservableObject {
         getRecentPosts()        
     }
     
+    
     // MARK: Authentication Methods
     func checkLogin() {
         
@@ -37,6 +38,7 @@ class ContentModel: ObservableObject {
         
         // TODO: Check if user meta data has been fetched
     }
+    
     
     // MARK: Data Retrieval Methods
     
@@ -121,6 +123,7 @@ class ContentModel: ObservableObject {
             }
         }
     }
+    
     
     // MARK: Data Mutation Methods
     func updateProfile(bio: String?, pfp: String?) {

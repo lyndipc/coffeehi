@@ -78,11 +78,13 @@ struct LoginView: View {
                         // MARK: Sign in button
                         Button {
                             
-                            // Log the user in
+                            // Login user
                             Auth.auth().signIn(withEmail: email, password: password) { result, error in
                                 
                                 // Check for errors
                                 guard error == nil else {
+                                    
+                                    // Capture error message
                                     errorMessage = error!.localizedDescription
                                     return
                                 }
@@ -90,11 +92,13 @@ struct LoginView: View {
                                 // Clear error message
                                 self.errorMessage = nil
                                 
+                                // Get authenticated user's data
                                 model.getUserData()
                                 
-                                // Change the view to logged in view
+                                // Change the view to FeedView()
                                 model.checkLogin()
                             }
+                            
                         } label: {
                             
                             ZStack {
