@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct ProfileView: View {
     
@@ -27,6 +28,18 @@ struct ProfileView: View {
                         
                         // Edit profile button
                         // TODO: Add conditional rendering based on whether it's user's own profile or not
+                        Button {
+                        
+                            try! Auth.auth().signOut()
+                            
+                            DispatchQueue.main.async {
+                                model.loggedIn = false
+                            }
+                        } label: {
+                            
+                            Text("Sign Out")
+                        }
+
                         
                         // TODO: Swap sf symbol icon with custom
                         Button {

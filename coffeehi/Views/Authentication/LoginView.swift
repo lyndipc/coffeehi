@@ -74,29 +74,28 @@ struct LoginView: View {
                     }
                     .padding(.bottom, 30.0)
                     
-                    // MARK: Sign in button
-                    Button {
-                        
-                        // Log the user in
-                        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+                    VStack(alignment: .leading, spacing: 25.0) {
+                        // MARK: Sign in button
+                        Button {
                             
-                            // Check for errors
-                            guard error == nil else {
-                                errorMessage = error!.localizedDescription
-                                return
+                            // Log the user in
+                            Auth.auth().signIn(withEmail: email, password: password) { result, error in
+                                
+                                // Check for errors
+                                guard error == nil else {
+                                    errorMessage = error!.localizedDescription
+                                    return
+                                }
+                                
+                                // Clear error message
+                                self.errorMessage = nil
+                                
+                                model.getUserData()
+                                
+                                // Change the view to logged in view
+                                model.checkLogin()
                             }
-                            
-                            // Clear error message
-                            self.errorMessage = nil
-                            
-                            model.getUserData()
-                            
-                            // Change the view to logged in view
-                            model.checkLogin()
-                        }
-                    } label: {
-                        
-                        VStack(spacing: 25.0) {
+                        } label: {
                             
                             ZStack {
                                 
@@ -110,21 +109,22 @@ struct LoginView: View {
                                     .tracking(3)
                             }
                         }
-                    }
-                    
-                    // If user taps button, display switches to CreateAccountView()
-                    Button {
                         
-                        DispatchQueue.main.async {
-                            loginMode = Constants.LoginMode.createAccount
+                        // If user taps button, display switches to CreateAccountView()
+                        Button {
+                            
+                            DispatchQueue.main.async {
+                                loginMode = Constants.LoginMode.createAccount
+                            }
+                        } label: {
+                            
+                            Text("Create An Account")
+                                .foregroundColor(Color(primaryColor.cgColor))
+                                .underline()
+                                .font(.caption)
+                                .tracking(2)
+                                .frame(width: g.size.width - 80)
                         }
-                    } label: {
-                        
-                        Text("Create An Account")
-                            .foregroundColor(Color(primaryColor.cgColor))
-                            .underline()
-                            .font(.caption)
-                            .tracking(2)
                     }
                 }
                 
