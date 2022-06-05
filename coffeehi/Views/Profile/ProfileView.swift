@@ -12,9 +12,7 @@ struct ProfileView: View {
     
     @EnvironmentObject var model: ContentModel
     @State var editProfileVisible = false
-    var name = UserService.shared.user.name
-    var bio: String?
-    var pfp: String?
+    let user = UserService.shared.user
     
     var body: some View {
         
@@ -30,7 +28,14 @@ struct ProfileView: View {
                         // TODO: Add conditional rendering based on whether it's user's own profile or not
                         Button {
                         
-                            try! Auth.auth().signOut()
+                            do {
+                                // Attempt to sign out user
+                                try Auth.auth().signOut()
+                            }
+                            catch {
+                                print("Couldn't sign out user")
+                                print(error)
+                            }
                             
                             DispatchQueue.main.async {
                                 model.loggedIn = false
@@ -61,16 +66,16 @@ struct ProfileView: View {
                         ProfileImage(width: 80, photo: "travis")
                         
                         // User's display name
-                        Text(name)
+                        Text(user.name)
                             .bold()
                             .font(.title3)
                         
                         // Username
-                        Text("@traviesims")
+                        Text(user.username)
                             .foregroundColor(.gray)
                         
                         // User bio
-                        Text("barista @stonecreekcoffee ~ content creator YT/IG: @traviesims ~ exploring the world")
+                        Text(user.bio)
                             .frame(minHeight: 30, maxHeight: 60)
                             .frame(width: g.size.width - 85)
                             .padding(.top)

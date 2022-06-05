@@ -36,7 +36,10 @@ class ContentModel: ObservableObject {
         // Check if there's a current user
         loggedIn = Auth.auth().currentUser != nil ? true : false
         
-        // TODO: Check if user meta data has been fetched
+        // Check if user meta data has been fetched
+        if UserService.shared.user.name == "" {
+            getUserData()
+        }
     }
     
     
@@ -46,40 +49,35 @@ class ContentModel: ObservableObject {
     func getUserData() {
         
         // Fetch data from Firestore
-        let userId = Auth.auth().currentUser?.uid
-        let users = db.collection("users").document(userId!)
-        
-        users.getDocument { docSnapshot, error in
+        if let userId = Auth.auth().currentUser?.uid {
             
-            // Create array of current user's data
-            var user = [User]()
+            let users = db.collection("users").document(userId)
             
-            // If document snapshot contains data & no errors are returned
-            if error == nil && docSnapshot != nil {
-             
-                // Create new user instance
-                let u = User()
+            users.getDocument { docSnapshot, error in
+                
+                // Create array of current user's data
+                let user = UserService.shared.user
+                
+                // If document snapshot contains data & no errors are returned
+                guard error == nil, docSnapshot != nil else {
+                    print(error!.localizedDescription)
+                    return
+                }
                 
                 // Extract fields from document snapshot
-                u.name = docSnapshot?.get("name") as? String ?? ""
-                u.username = docSnapshot?.get("username") as? String ?? ""
+                user.name = docSnapshot?.get("name") as? String ?? ""
+                user.username = docSnapshot?.get("username") as? String ?? ""
                 
                 // Extract map from document snapshot
                 let profileMap = docSnapshot?.get("profile") as! [String: Any]
                 
-                u.bio = profileMap["bio"] as? String ?? ""
-                u.pfp = profileMap["pfp"] as? String ?? ""
-                
-                user.append(u)
+                user.bio = profileMap["bio"] as? String ?? ""
+                user.pfp = profileMap["pfp"] as? String ?? ""
             }
-            else if error != nil {
-                // Print errors
-                print(error!.localizedDescription)
-            }
+        }
+        else {
             
-            DispatchQueue.main.async {
-                self.user = user
-            }
+            return
         }
     }
     
@@ -127,12 +125,20 @@ class ContentModel: ObservableObject {
     
     // MARK: Data Mutation Methods
     func updateProfile(bio: String?, pfp: String?) {
-        let users = db.collection("users")
         
-        // Check that currentUser is not nil
+        // Check that there is a valid user
         if let userId = Auth.auth().currentUser?.uid {
             
-            // Update profile info
+            // Save user's profile locally
+            let user = UserService.shared.user
+            
+            user.bio = bio ?? ""
+            user.pfp = pfp ?? ""
+            
+            print(user)
+            
+            // Update profile info in firestore
+            let users = db.collection("users")
             users.document(userId).updateData(["profile": [
                 "bio": bio ?? "",
                 "pfp": pfp ?? ""
