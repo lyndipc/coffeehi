@@ -25,20 +25,20 @@ struct ProfileView: View {
                     VStack {
                         
                         // Edit profile button
-                        // TODO: Add conditional rendering based on whether it's user's own profile or not
                         Button {
                         
+                            // Attempt to sign out user
                             do {
-                                // Attempt to sign out user
                                 try Auth.auth().signOut()
+                                
+                                // Update UI upon sign signout
+                                DispatchQueue.main.async {
+                                    model.loggedIn = false
+                                }
                             }
                             catch {
                                 print("Couldn't sign out user")
                                 print(error)
-                            }
-                            
-                            DispatchQueue.main.async {
-                                model.loggedIn = false
                             }
                         } label: {
                             
@@ -59,10 +59,12 @@ struct ProfileView: View {
                                 .position(CGPoint(x: g.size.width - 50, y: 10))
                         }
                         .sheet(isPresented: $editProfileVisible) {
+                            
                             // Display profile editor
                             EditProfileView(editProfileVisible: $editProfileVisible)
                         }
                         
+                        // User pfp
                         ProfileImage(width: 80, photo: "travis")
                         
                         // User's display name
@@ -71,14 +73,14 @@ struct ProfileView: View {
                             .font(.title3)
                         
                         // Username
-                        Text(user.username)
+                        Text("@\(user.username)")
                             .foregroundColor(.gray)
                         
                         // User bio
                         Text(user.bio)
                             .frame(minHeight: 30, maxHeight: 60)
                             .frame(width: g.size.width - 85)
-                            .padding(.top)
+                            .padding(.vertical, 10.0)
                     }
                     
                     Divider()

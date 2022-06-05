@@ -15,6 +15,7 @@ struct EditProfileView: View {
     @State var bio: String = ""
     @State var pfp: String = ""
     @Binding var editProfileVisible: Bool
+    var user = UserService.shared.user
     
     var body: some View {
         
@@ -25,17 +26,28 @@ struct EditProfileView: View {
                 Spacer()
                 
                 VStack(spacing: 25.0) {
+                    
+                    // TODO: update UI based on whether or not fields are populated
+                    
+                    // Check if profile image field is already populated
+                    let userPfp = user.pfp != "" ? user.pfp : "Profile Image"
+                    
                     // Change profile image
-                    FormField(value: $pfp, label: "profile image", placeholder: "Profile Image", width: g.size.width - 60)
+                    FormField(value: $pfp, label: "profile image", placeholder: userPfp, width: g.size.width - 60)
+                    
+                    // Check if user bio field is already populated
+                    let userBio = user.bio != "" ? user.bio : "Bio"
                     
                     // Update bio
-                    FormField(value: $bio, label: "bio", placeholder: "Bio", width: g.size.width - 60)
+                    FormField(value: $bio, label: "bio", placeholder: userBio, width: g.size.width - 60)
                 }
                 
                 Spacer()
                 
                 // Save data button
                 Button {
+                    
+                    // Update user profile with new changes
                     model.updateProfile(bio: bio, pfp: pfp)
                     
                     // Dismiss sheet
@@ -43,6 +55,7 @@ struct EditProfileView: View {
                         editProfileVisible = false
                     }
                 } label: {
+                    
                     ThemeButton(buttonText: "Save", width: g.size.width - 80)
                 }
                 .frame(width: g.size.width - 100, height: 48)
