@@ -44,24 +44,24 @@ struct TrendingView: View {
                         
                         HStack {
                             Rectangle()
-                                .fill(Color(lightGray))
+                                .fill(Color.lightGray)
                                 .frame(width: 150, height: 150)
                                 .cornerRadius(5)
                             
                             Rectangle()
-                                .fill(Color(lightGray))
+                                .fill(Color.lightGray)
                                 .frame(width: 150, height: 150)
                                 .cornerRadius(5)
                         }
                         
                         HStack {
                             Rectangle()
-                                .fill(Color(lightGray))
+                                .fill(Color.lightGray)
                                 .frame(width: 150, height: 150)
                                 .cornerRadius(5)
                             
                             Rectangle()
-                                .fill(Color(lightGray))
+                                .fill(Color.lightGray)
                                 .frame(width: 150, height: 150)
                                 .cornerRadius(5)
                         }
@@ -70,7 +70,7 @@ struct TrendingView: View {
                     }
                 }
                 .padding(.top)
-                .foregroundColor(Color(primaryColor))
+                .foregroundColor(Color.kellyGreen)
             }
             .ignoresSafeArea(edges: [.bottom])
         }

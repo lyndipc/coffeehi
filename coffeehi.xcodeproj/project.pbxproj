@@ -25,6 +25,7 @@
 		3D95C9DA283C25890006EC30 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D95C9D9283C25890006EC30 /* NotificationView.swift */; };
 		3D95C9DC283C2FDE0006EC30 /* PostDraftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D95C9DB283C2FDE0006EC30 /* PostDraftView.swift */; };
 		3D9BA076284E933D002AD27B /* PullRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9BA075284E933D002AD27B /* PullRefresh.swift */; };
+		3D9BA078284EA7F5002AD27B /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9BA077284EA7F5002AD27B /* ThemeColors.swift */; };
 		3D9C73A72842B5DA00244B60 /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C73A62842B5DA00244B60 /* ContentModel.swift */; };
 		3D9E8EDD2848A36A00FA0599 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9E8EDC2848A36A00FA0599 /* Constants.swift */; };
 		3D9E8EDF2848A67E00FA0599 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9E8EDE2848A67E00FA0599 /* UserService.swift */; };
@@ -59,6 +60,7 @@
 		3D95C9D9283C25890006EC30 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		3D95C9DB283C2FDE0006EC30 /* PostDraftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDraftView.swift; sourceTree = "<group>"; };
 		3D9BA075284E933D002AD27B /* PullRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRefresh.swift; sourceTree = "<group>"; };
+		3D9BA077284EA7F5002AD27B /* ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
 		3D9C73A62842B5DA00244B60 /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
 		3D9E8EDC2848A36A00FA0599 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3D9E8EDE2848A67E00FA0599 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			children = (
 				3D9E8EDC2848A36A00FA0599 /* Constants.swift */,
 				3D9E8EDE2848A67E00FA0599 /* UserService.swift */,
+				3D9BA077284EA7F5002AD27B /* ThemeColors.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				3D67C382282F7B5B00771072 /* Post.swift in Sources */,
 				3D1F019328496CCF0021A7FB /* AuthenticationView.swift in Sources */,
 				3D95C9DA283C25890006EC30 /* NotificationView.swift in Sources */,
+				3D9BA078284EA7F5002AD27B /* ThemeColors.swift in Sources */,
 				3D9E8EE12848A6B700FA0599 /* User.swift in Sources */,
 				3D2212472837668E005C0F43 /* ProfileImage.swift in Sources */,
 				3D31C0E32833700A000832D4 /* LoginView.swift in Sources */,

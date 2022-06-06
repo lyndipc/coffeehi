@@ -19,13 +19,13 @@ struct FormField: View {
         VStack(alignment: .leading) {
             
             Text(label)
-                .foregroundColor(Color(primaryColor.cgColor))
+                .foregroundColor(Color.kellyGreen)
                 .tracking(3)
             
             ZStack {
                 
                 Rectangle()
-                    .fill(Color(offWhite.cgColor))
+                    .fill(Color.offWhite)
                 
                 TextField(placeholder, text: $value)
                     .padding(.leading)

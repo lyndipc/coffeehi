@@ -55,7 +55,7 @@ struct ProfileView: View {
                             Image(systemName: "pencil.circle.fill")
                                 .resizable()
                                 .frame(width: 40, height: 40)
-                                .foregroundColor(Color(lightGray.cgColor))
+                                .foregroundColor(Color.lightGray)
                                 .position(CGPoint(x: g.size.width - 50, y: 10))
                         }
                         .sheet(isPresented: $editProfileVisible) {

@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-// Theme colors
-let primaryColor = UIColor(red: 0.016, green: 0.767, blue: 0.541, alpha: 1)
-let offWhite = UIColor(red: 229, green: 229, blue: 229, alpha: 0.5)
-let darkGray = UIColor(red: 0, green: 0, blue: 0, alpha: 0.68)
-let lightGray = UIColor(red: 0.898, green: 0.898, blue: 0.898, alpha: 1)
-
 struct LaunchView: View {
     
     private let tabBarImageNames = ["house", "arrow-trend", "square-plus", "bell", "bell"]

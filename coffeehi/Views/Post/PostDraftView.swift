@@ -27,7 +27,7 @@ struct PostDraftView: View {
                 ZStack {
                     
                     Rectangle()
-                        .fill(Color(lightGray))
+                        .fill(Color.lightGray)
                         .cornerRadius(10)
                     
                     VStack(alignment: .leading) {
@@ -37,8 +37,8 @@ struct PostDraftView: View {
                             ProfileImage(width: 35, photo: "travis")
 
                             TextEditor(text: $postBody)
-                                .foregroundColor(Color(primaryColor))
-                                .background(Color(lightGray))
+                                .foregroundColor(Color.kellyGreen)
+                                .background(Color.lightGray)
                         
                             Spacer()
                         }
@@ -54,7 +54,7 @@ struct PostDraftView: View {
                              
                                 Text("Cancel")
                                     .bold()
-                                    .foregroundColor(Color(primaryColor))
+                                    .foregroundColor(Color.kellyGreen)
                             })
                             
                             Spacer()

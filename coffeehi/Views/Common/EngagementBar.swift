@@ -16,14 +16,14 @@ struct EngagementBar: View {
             
                 Image("heart-solid")
                 Text("12")
-                    .foregroundColor(Color(primaryColor))
+                    .foregroundColor(Color.kellyGreen)
             }
             
             HStack(spacing: 10.0) {
              
                 Image("message")
                 Text("4")
-                    .foregroundColor(Color(primaryColor))
+                    .foregroundColor(Color.kellyGreen)
             }
         }
     }

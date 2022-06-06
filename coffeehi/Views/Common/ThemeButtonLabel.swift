@@ -19,7 +19,7 @@ struct ThemeButtonLabel: View {
         ZStack {
             
             Rectangle()
-                .fill(Color(primaryColor.cgColor))
+                .fill(Color.kellyGreen)
                 .frame(width: width, height: height ?? 44)
                 .cornerRadius(20)
             

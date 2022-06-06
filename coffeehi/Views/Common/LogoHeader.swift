@@ -17,7 +17,7 @@ struct LogoHeader: View {
             .frame(height: 25)
             .padding(.top)
             .padding(.bottom, 5.0)
-            .shadow(color: Color(lightGray), radius: 0.8, x: 5.0, y: 3.0)
+            .shadow(color: Color.lightGray, radius: 0.8, x: 5.0, y: 3.0)
     }
 }
 

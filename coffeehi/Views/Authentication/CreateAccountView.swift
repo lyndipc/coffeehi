@@ -49,7 +49,7 @@ struct CreateAccountView: View {
                     VStack(alignment: .leading) {
                         
                         Text("name")
-                            .foregroundColor(Color(primaryColor.cgColor))
+                            .foregroundColor(Color.kellyGreen)
                             .tracking(3)
                         
                         ZStack {
@@ -68,7 +68,7 @@ struct CreateAccountView: View {
                     VStack(alignment: .leading) {
                         
                         Text("username")
-                            .foregroundColor(Color(primaryColor.cgColor))
+                            .foregroundColor(Color.kellyGreen)
                             .tracking(3)
                         
                         ZStack {
@@ -87,7 +87,7 @@ struct CreateAccountView: View {
                     VStack(alignment: .leading) {
                         
                         Text("email")
-                            .foregroundColor(Color(primaryColor.cgColor))
+                            .foregroundColor(Color.kellyGreen)
                             .tracking(3)
                         
                         ZStack {
@@ -106,7 +106,7 @@ struct CreateAccountView: View {
                     VStack(alignment: .leading) {
                         
                         Text("password")
-                            .foregroundColor(Color(primaryColor.cgColor))
+                            .foregroundColor(Color.kellyGreen)
                             .tracking(3)
                         
                         ZStack {
@@ -160,7 +160,7 @@ struct CreateAccountView: View {
                             ZStack {
                                 
                                 Rectangle()
-                                    .fill(Color(primaryColor.cgColor))
+                                    .fill(Color.kellyGreen)
                                     .frame(width: g.size.width - 80, height: 44)
                                     .cornerRadius(20)
                                 
@@ -178,7 +178,7 @@ struct CreateAccountView: View {
                             } label: {
                                 
                                 Text("Sign In")
-                                    .foregroundColor(Color(primaryColor.cgColor))
+                                    .foregroundColor(Color.kellyGreen)
                                     .underline()
                                     .font(.caption)
                                     .tracking(2)

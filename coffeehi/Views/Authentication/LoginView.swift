@@ -51,13 +51,13 @@ struct LoginView: View {
                     VStack(alignment: .leading) {
                         
                         Text("password")
-                            .foregroundColor(Color(primaryColor.cgColor))
+                            .foregroundColor(Color.kellyGreen)
                             .tracking(3)
                         
                         ZStack {
                             
                             Rectangle()
-                                .fill(Color(offWhite.cgColor))
+                                .fill(Color.offWhite)
                             
                             SecureField("Password", text: $password)
                                 .padding(.leading)
@@ -66,7 +66,7 @@ struct LoginView: View {
                         .cornerRadius(10)
                         
                         Text("Forgot password?")
-                            .foregroundColor(Color(primaryColor.cgColor))
+                            .foregroundColor(Color.kellyGreen)
                             .underline()
                             .font(.caption)
                             .tracking(1)
@@ -104,7 +104,7 @@ struct LoginView: View {
                             ZStack {
                                 
                                 Rectangle()
-                                    .fill(Color(primaryColor.cgColor))
+                                    .fill(Color.kellyGreen)
                                     .frame(width: g.size.width - 80, height: 44)
                                     .cornerRadius(20)
                                 
@@ -123,7 +123,7 @@ struct LoginView: View {
                         } label: {
                             
                             Text("Create An Account")
-                                .foregroundColor(Color(primaryColor.cgColor))
+                                .foregroundColor(Color.kellyGreen)
                                 .underline()
                                 .font(.caption)
                                 .tracking(2)

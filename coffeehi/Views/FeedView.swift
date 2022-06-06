@@ -18,6 +18,10 @@ struct FeedView: View {
             
             ScrollView(showsIndicators: false) {
                 
+                PullRefresh(coordinateSpaceName: "pullToRefresh") {
+                    model.getRecentPosts()
+                }
+                
                 // Display posts in home feed
                 LazyVStack {
                     
@@ -40,6 +44,7 @@ struct FeedView: View {
                 }
                 
             }
+            .coordinateSpace(name: "pullToRefresh")
         }
         .ignoresSafeArea(edges: [.bottom])
     }
