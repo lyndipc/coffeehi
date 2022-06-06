@@ -9,24 +9,22 @@ import SwiftUI
 
 struct PostView: View {
     
-    // TODO: Add local post service reference
-    
+    var name: String?
+    var username: String?
+    var content: String?
     var width: CGFloat?
     
     var body: some View {
         
         VStack(alignment: .leading) {
-            
-            // Loop through post data to display in FeedView
-//            for p in post {
                 
             HStack(spacing: 0.0) {
                     
-                // MARK: Profile image
+                // Profile image
                 ProfileImage(width: 50.0, photo: "ben")
                     
-                // MARK: User's display name
-                Text("Ben Thompson")
+                // User's name
+                Text(name ?? "")
                     .font(.title3)
                     .bold()
             }
@@ -34,7 +32,7 @@ struct PostView: View {
             
             // TODO: Create conditional --> If image was posted, it will display here
             
-            // MARK: Posted image
+            // Post image
             Image("friends-coffee")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
@@ -43,22 +41,19 @@ struct PostView: View {
                 .padding([.top, .bottom], 10.0)
                 .padding([.leading, .trailing])
             
-            // MARK: Post content
-            Text("This is sample post text")
+            // Post content
+            Text(content ?? "")
                 .padding([.trailing, .leading, .bottom])
                 .font(.body)
                 
             // TODO: Add method to determine when to include "Read More" button
             
-            // MARK: Engagement Bar
             EngagementBar()
             .padding([.leading, .trailing, .bottom])
             
             Divider()
                 .background(Color.gray)
                 .padding([.leading, .trailing])
-                
-//            }
         }
     }
 }

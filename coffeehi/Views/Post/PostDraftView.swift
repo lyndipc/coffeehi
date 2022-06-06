@@ -24,7 +24,6 @@ struct PostDraftView: View {
             VStack {
                 
                 LogoHeader()
-                
                 ZStack {
                     
                     Rectangle()

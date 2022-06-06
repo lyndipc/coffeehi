@@ -33,7 +33,6 @@
 		3DAA981628369D3800AAD340 /* LogoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA981528369D3800AAD340 /* LogoHeader.swift */; };
 		3DAA981828369FD100AAD340 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA981728369FD100AAD340 /* PostDetailView.swift */; };
 		3DAA981A2836AE1D00AAD340 /* TrendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA98192836AE1D00AAD340 /* TrendingView.swift */; };
-		3DFFF176284D1FB600D7BF64 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFFF175284D1FB600D7BF64 /* PostService.swift */; };
 		469EB7CC57865816AB763B5E /* Pods_coffeehi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83D878AF5D48F1169380C53 /* Pods_coffeehi.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,7 +66,6 @@
 		3DAA981528369D3800AAD340 /* LogoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoHeader.swift; sourceTree = "<group>"; };
 		3DAA981728369FD100AAD340 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		3DAA98192836AE1D00AAD340 /* TrendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingView.swift; sourceTree = "<group>"; };
-		3DFFF175284D1FB600D7BF64 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		D83D878AF5D48F1169380C53 /* Pods_coffeehi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_coffeehi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -209,7 +207,6 @@
 			children = (
 				3D9E8EDC2848A36A00FA0599 /* Constants.swift */,
 				3D9E8EDE2848A67E00FA0599 /* UserService.swift */,
-				3DFFF175284D1FB600D7BF64 /* PostService.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -362,7 +359,6 @@
 				3D67C382282F7B5B00771072 /* Post.swift in Sources */,
 				3D1F019328496CCF0021A7FB /* AuthenticationView.swift in Sources */,
 				3D95C9DA283C25890006EC30 /* NotificationView.swift in Sources */,
-				3DFFF176284D1FB600D7BF64 /* PostService.swift in Sources */,
 				3D9E8EE12848A6B700FA0599 /* User.swift in Sources */,
 				3D2212472837668E005C0F43 /* ProfileImage.swift in Sources */,
 				3D31C0E32833700A000832D4 /* LoginView.swift in Sources */,

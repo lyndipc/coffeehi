@@ -7,11 +7,9 @@
 
 import SwiftUI
 
-let lightGray = UIColor(red: 0.898, green: 0.898, blue: 0.898, alpha: 1)
-
 struct FeedView: View {
     
-    @EnvironmentObject var model: ContentModel
+    let post = UserService.shared.post
     
     var body: some View {
         
@@ -26,10 +24,10 @@ struct FeedView: View {
                     
                     let width = g.size.width - 50
                     
-                    // TODO: Loop through Post data object
-                    ForEach(0..<10) {index in
+                    // Loop through post array
+                    ForEach(post) {p in
                         
-                        PostView(width: width)
+                        PostView(name: p.name, username: p.username, content: p.body, width: width)
                             .padding([.top, .leading, .trailing])
                     }
                 }

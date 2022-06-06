@@ -42,6 +42,9 @@ class ContentModel: ObservableObject {
         if UserService.shared.user.name == "" {
             getUserData()
         }
+        else if UserService.shared.post[0].name == "" {
+            getRecentPosts()
+        }
     }
     
     
@@ -53,8 +56,10 @@ class ContentModel: ObservableObject {
         // Fetch data from Firestore
         if let userId = Auth.auth().currentUser?.uid {
             
+            // Create reference to user document
             let users = db.collection("users").document(userId)
             
+            // Retrieve user document from firestore
             users.getDocument { docSnapshot, error in
                 
                 // Create reference to logged in User
@@ -106,6 +111,7 @@ class ContentModel: ObservableObject {
             }
             
             // Reference to local post instance
+            var post = UserService.shared.post
             
             
             // Store post data in local instance
@@ -121,11 +127,14 @@ class ContentModel: ObservableObject {
                     p.likeCount = doc["likeCount"] as? Int ?? 0
                     p.name = doc["name"] as? String ?? ""
                     p.username = doc["username"] as? String ?? ""
+                
+                post.append(p)
             }
             
             DispatchQueue.main.async {
                 
                 // Set all post data to local service
+                UserService.shared.post = post
             }
         }
     }
@@ -135,7 +144,8 @@ class ContentModel: ObservableObject {
     
     // Create new post
     func createPost(postBody: String?) {
-        
+
+        // Check that user is authenticated
         guard Auth.auth().currentUser != nil else {
             print("User not authenticated")
             return
@@ -147,6 +157,8 @@ class ContentModel: ObservableObject {
         // Store post data in dict
         let postData: [String: Any] = [
             "userId": userId!,
+            "name": UserService.shared.user.name,
+            "username": UserService.shared.user.username,
             "body": postBody ?? ""
         ]
         
@@ -159,7 +171,6 @@ class ContentModel: ObservableObject {
             if error != nil {
                 print("Problem adding post to database")
                 print(error!.localizedDescription)
-                
             }
             else {
                 print("Post created successfully")
@@ -173,13 +184,12 @@ class ContentModel: ObservableObject {
         // Check that there is a valid user
         if let userId = Auth.auth().currentUser?.uid {
             
-            // Save user's profile locally
+            // Create reference to user instance
             let user = UserService.shared.user
             
+            // Save user's profile locally
             user.bio = bio ?? ""
             user.pfp = pfp ?? ""
-            
-            print(user)
             
             // Update profile info in firestore
             let users = db.collection("users")
