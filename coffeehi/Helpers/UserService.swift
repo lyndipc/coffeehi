@@ -10,7 +10,6 @@ import Foundation
 class UserService {
     
     var user = User()
-    var post = [Post]()
     
     static var shared = UserService()
     

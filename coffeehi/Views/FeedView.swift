@@ -9,7 +9,8 @@ import SwiftUI
 
 struct FeedView: View {
     
-    let post = UserService.shared.post
+    @EnvironmentObject var model:ContentModel
+    let user = UserService.shared.user
     
     var body: some View {
         
@@ -24,13 +25,20 @@ struct FeedView: View {
                     
                     let width = g.size.width - 50
                     
-                    // Loop through post array
-                    ForEach(post) {p in
-                        
-                        PostView(name: p.name, username: p.username, content: p.body, width: width)
-                            .padding([.top, .leading, .trailing])
+                    if user.name != "" {
+                        // Loop through post array
+                        ForEach(model.posts) {p in
+                            
+                            PostView(name: p.name, username: p.username, content: p.body, width: width)
+                                .padding([.top, .leading, .trailing])
+                        }
+                    }
+                    else {
+                        ProgressView()
+                            .padding(.vertical, g.size.height / 2)
                     }
                 }
+                
             }
         }
         .ignoresSafeArea(edges: [.bottom])

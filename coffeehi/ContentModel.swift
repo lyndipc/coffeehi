@@ -27,7 +27,6 @@ class ContentModel: ObservableObject {
     private var postBody: String?
     
     init() {
-
     }
     
     // MARK: Authentication Methods
@@ -40,10 +39,8 @@ class ContentModel: ObservableObject {
         
         // Check if user meta data has been fetched
         if UserService.shared.user.name == "" {
-            getUserData()
-        }
-        else if UserService.shared.post[0].name == "" {
-            getRecentPosts()
+            
+            self.getUserData()
         }
     }
     
@@ -62,8 +59,9 @@ class ContentModel: ObservableObject {
             // Retrieve user document from firestore
             users.getDocument { docSnapshot, error in
                 
-                // Create reference to logged in User
-                let user = UserService.shared.user
+                // Create user instance
+                var user = [User]()
+                let u = User()
                 
                 // If document snapshot contains data & no errors are returned
                 guard error == nil, docSnapshot != nil else {
@@ -72,15 +70,26 @@ class ContentModel: ObservableObject {
                 }
                 
                 // Extract fields from document snapshot and store in UserService
-                user.name = docSnapshot?.get("name") as? String ?? ""
-                user.username = docSnapshot?.get("username") as? String ?? ""
+                u.id = docSnapshot?.get("id") as? String ?? ""
+                u.name = docSnapshot?.get("name") as? String ?? ""
+                u.username = docSnapshot?.get("username") as? String ?? ""
                 
                 // Extract map from document snapshot
                 let profileMap = docSnapshot?.get("profile") as! [String: Any]
                 
                 // Store profile data in UserService
-                user.bio = profileMap["bio"] as? String ?? ""
-                user.pfp = profileMap["pfp"] as? String ?? ""
+                u.bio = profileMap["bio"] as? String ?? ""
+                u.pfp = profileMap["pfp"] as? String ?? ""
+                
+                user.append(u)
+                
+                DispatchQueue.main.async {
+                    
+                    // Store user data locally
+                    UserService.shared.user = u
+                    
+                    self.user = user
+                }
             }
             
             // Update user's feed
@@ -110,14 +119,13 @@ class ContentModel: ObservableObject {
                 return
             }
             
-            // Reference to local post instance
-            var post = UserService.shared.post
-            
+            // Crate a Post array
+            var post = [Post]()
             
             // Store post data in local instance
             for doc in querySnapshot!.documents {
                 
-                // Create property to store each post's data
+                // Create post instance to store each of the post property values
                 var p = Post()
                     
                     // Parse values from doc into post instance
@@ -133,8 +141,8 @@ class ContentModel: ObservableObject {
             
             DispatchQueue.main.async {
                 
-                // Set all post data to local service
-                UserService.shared.post = post
+                // Set all post data to local posts environment object
+                self.posts = post
             }
         }
     }
@@ -177,6 +185,8 @@ class ContentModel: ObservableObject {
             }
         }
     }
+    
+    // TODO: Create save draft post method
     
     // Update user's profile
     func updateProfile(bio: String?, pfp: String?) {

@@ -26,7 +26,7 @@ struct ProfileView: View {
                         
                         // Edit profile button
                         Button {
-                        
+                            
                             // Attempt to sign out user
                             do {
                                 try Auth.auth().signOut()
@@ -38,13 +38,13 @@ struct ProfileView: View {
                             }
                             catch {
                                 print("Couldn't sign out user")
-                                print(error)
+                                print(error.localizedDescription)
                             }
                         } label: {
                             
                             Text("Sign Out")
                         }
-
+                        
                         
                         // TODO: Swap sf symbol icon with custom
                         Button {
@@ -55,7 +55,7 @@ struct ProfileView: View {
                             Image(systemName: "pencil.circle.fill")
                                 .resizable()
                                 .frame(width: 40, height: 40)
-                                .foregroundColor(Color(lightGray))
+                                .foregroundColor(Color(lightGray.cgColor))
                                 .position(CGPoint(x: g.size.width - 50, y: 10))
                         }
                         .sheet(isPresented: $editProfileVisible) {
@@ -67,21 +67,24 @@ struct ProfileView: View {
                         // User pfp
                         ProfileImage(width: 80, photo: "travis")
                         
-                        // User's display name
-                        Text(user.name)
-                            .bold()
-                            .font(.title3)
-                        
-                        // Username
-                        Text("@\(user.username)")
-                            .foregroundColor(.gray)
-                        
-                        // TODO: Update user bio after saving new data
-                        // User bio
-                        Text(user.bio)
-                            .frame(minHeight: 30, maxHeight: 60)
-                            .frame(width: g.size.width - 85)
-                            .padding(.vertical, 10.0)
+                        // Loop through user data model
+                        ForEach(model.user) { m in
+                            
+                            Text(m.name)
+                                .bold()
+                                .font(.title3)
+                            
+                            // Username
+                            Text("@\(user.username)")
+                                .foregroundColor(.gray)
+                            
+                            // TODO: Update user bio after saving new data
+                            // User bio
+                            Text(m.bio)
+                                .frame(minHeight: 30, maxHeight: 60)
+                                .frame(width: g.size.width - 85)
+                                .padding(.vertical, 10.0)
+                        }
                     }
                     
                     Divider()
