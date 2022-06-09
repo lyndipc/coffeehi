@@ -17,6 +17,7 @@ struct PostDraftView: View {
         UITextView.appearance().backgroundColor = .clear
     }
     
+    // TODO: Fix text editor style and rethink alignment/organization
     var body: some View {
         
         GeometryReader { g in

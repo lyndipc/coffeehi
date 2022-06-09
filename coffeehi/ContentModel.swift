@@ -9,6 +9,10 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
+// TODO: Photo upload method
+
+// TODO: Follow/unfollow methods
+
 class ContentModel: ObservableObject {
     
     // Reference to Cloud Firestore

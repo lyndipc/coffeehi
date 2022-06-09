@@ -52,7 +52,7 @@ struct PostView: View {
             .padding([.leading, .trailing, .bottom])
             
             Divider()
-                .background(Color.gray)
+                .background(Color.divider)
                 .padding([.leading, .trailing])
         }
     }

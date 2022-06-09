@@ -15,6 +15,7 @@ extension Color {
     
     // Element-specific colors
     static let background = Color("background")
+    static let divider = Color("divider")
     static let formField = Color("formField")
     static let titleText = Color("titleText")
 }

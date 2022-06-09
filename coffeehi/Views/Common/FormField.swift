@@ -36,14 +36,12 @@ struct FormField: View {
     }
 }
 
-//struct FormField_Previews: PreviewProvider {
-//    static var previews: some View {
-//
-//        var email = "whodis@gmail.com"
-//
-//        GeometryReader { g in
-//
-//            FormField(value: $email, label: "email", placeholder: "Email", width: g.size.width - 60)
-//        }
-//    }
-//}
+struct FormField_Previews: PreviewProvider {
+    static var previews: some View {
+
+        GeometryReader { g in
+
+            FormField(value: .constant("testuser@gmail.com"), label: "email", placeholder: "Email", width: g.size.width - 60)
+        }
+    }
+}
