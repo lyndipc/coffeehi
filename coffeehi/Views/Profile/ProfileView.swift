@@ -45,30 +45,28 @@ struct ProfileView: View {
                             Text("Sign Out")
                         }
                         
-                        
-                        // TODO: Swap sf symbol icon with custom
-                        Button {
-                            
-                            editProfileVisible = true
-                        } label: {
-                            
-                            Image(systemName: "pencil.circle.fill")
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .foregroundColor(Color.lightGray)
-                                .position(CGPoint(x: g.size.width - 50, y: 10))
-                        }
-                        .sheet(isPresented: $editProfileVisible) {
-                            
-                            // Display profile editor
-                            EditProfileView(editProfileVisible: $editProfileVisible)
-                        }
-                        
-                        // User pfp
-                        ProfileImage(width: 80, photo: "travis")
-                        
                         // Loop through user data model
                         ForEach(model.user) { m in
+                            // TODO: Swap sf symbol icon with custom
+                            Button {
+                                
+                                editProfileVisible = true
+                            } label: {
+                                
+                                Image(systemName: "pencil.circle.fill")
+                                    .resizable()
+                                    .frame(width: 40, height: 40)
+                                    .foregroundColor(Color.lightGray)
+                                    .position(CGPoint(x: g.size.width - 50, y: 10))
+                            }
+                            .sheet(isPresented: $editProfileVisible) {
+                                
+                                // Display profile editor
+                                EditProfileView(bio: m.bio, pfp: m.pfp, editProfileVisible: $editProfileVisible)
+                            }
+                            
+                            // User pfp
+                            ProfileImage(width: 80, photo: "travis")
                             
                             Text(m.name)
                                 .bold()

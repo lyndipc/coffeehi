@@ -198,21 +198,19 @@ class ContentModel: ObservableObject {
         // Check that there is a valid user
         if let userId = Auth.auth().currentUser?.uid {
             
-            // Create reference to user instance
-            let user = UserService.shared.user
-            
-            // Save user's profile locally
-            user.bio = bio ?? ""
-            user.pfp = pfp ?? ""
+            // Create dictionary of unwrapped profile data
+            let profileData = [
+                "bio": bio ?? "",
+                "pfp": pfp ?? ""
+            ]
             
             // Update profile info in firestore
             let users = db.collection("users")
-            users.document(userId).updateData(["profile": [
-                "bio": bio ?? "",
-                "pfp": pfp ?? ""
-            ]])
+            users.document(userId).updateData(["profile": profileData])
+            
+            DispatchQueue.main.async {
+                self.getUserData()
+            }
         }
-        
-        // TODO: Update UI after profile has been changed
     }
 }

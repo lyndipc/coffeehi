@@ -7,15 +7,12 @@
 
 import SwiftUI
 
-// TODO: Create profile editor view for sheet
-
 struct EditProfileView: View {
     
     @EnvironmentObject var model: ContentModel
-    @State var bio: String = ""
-    @State var pfp: String = ""
+    @State var bio: String
+    @State var pfp: String
     @Binding var editProfileVisible: Bool
-    var user = UserService.shared.user
     
     var body: some View {
         
@@ -27,19 +24,11 @@ struct EditProfileView: View {
                 
                 VStack(spacing: 25.0) {
                     
-                    // TODO: update UI based on whether or not fields are populated
-                    
-                    // Check if profile image field is already populated
-                    let userPfp = user.pfp != "" ? user.pfp : "Profile Image"
-                    
                     // Change profile image
-                    FormField(value: $pfp, label: "profile image", placeholder: userPfp, width: g.size.width - 60)
-                    
-                    // Check if user bio field is already populated
-                    let userBio = user.bio != "" ? user.bio : "Bio"
+                    FormField(value: $pfp, label: "profile image", placeholder: "User PFP", width: g.size.width - 60)
                     
                     // Update bio
-                    FormField(value: $bio, label: "bio", placeholder: userBio, width: g.size.width - 60)
+                    FormField(value: $bio, label: "bio", placeholder: "Bio", width: g.size.width - 60)
                 }
                 
                 Spacer()
@@ -68,10 +57,12 @@ struct EditProfileView: View {
 }
 
 struct EditProfileView_Previews: PreviewProvider {
-    
+
     @State static var editProfileVisible = true
-    
+    @State static var bio = "My sweet bio"
+    @State static var pfp = ""
+
     static var previews: some View {
-        EditProfileView(editProfileVisible: $editProfileVisible)
+        EditProfileView(bio: bio, pfp: pfp, editProfileVisible: $editProfileVisible)
     }
 }
