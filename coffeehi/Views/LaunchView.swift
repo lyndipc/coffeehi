@@ -76,7 +76,9 @@ struct LaunchView: View {
                 .frame(height: 50)
             }
         }
+        .background(Color.background)
     }
+        
 }
 
 struct LaunchView_Previews: PreviewProvider {

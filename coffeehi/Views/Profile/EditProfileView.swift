@@ -64,7 +64,6 @@ struct EditProfileView: View {
             }
             .frame(width: g.size.width)
         }
-        .background(Color.darkGray)
     }
 }
 

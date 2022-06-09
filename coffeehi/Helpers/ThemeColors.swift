@@ -9,11 +9,11 @@ import SwiftUI
 
 extension Color {
     
-    static let darkGray = Color("darkGray")
+    // Primary and accent colors (respectively)
     static let kellyGreen = Color("kellyGreen")
     static let lightGray = Color("lightGray")
-    static let offWhite = Color("background")
     
+    // Element-specific colors
     static let background = Color("background")
     static let formField = Color("formField")
     static let titleText = Color("titleText")

@@ -133,7 +133,6 @@ struct LoginView: View {
             }
             .frame(width: g.size.width)
         }
-        .background(Color.offWhite)
     }
 }
 
