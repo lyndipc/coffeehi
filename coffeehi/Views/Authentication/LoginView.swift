@@ -33,7 +33,7 @@ struct LoginView: View {
                         
                         Text("coffeehi")
                             .font(.largeTitle)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color.titleText)
                             .tracking(8)
                         Image("logo")
                     }
@@ -57,7 +57,7 @@ struct LoginView: View {
                         ZStack {
                             
                             Rectangle()
-                                .fill(Color.offWhite)
+                                .fill(Color.formField)
                             
                             SecureField("Password", text: $password)
                                 .padding(.leading)
@@ -101,17 +101,7 @@ struct LoginView: View {
                             
                         } label: {
                             
-                            ZStack {
-                                
-                                Rectangle()
-                                    .fill(Color.kellyGreen)
-                                    .frame(width: g.size.width - 80, height: 44)
-                                    .cornerRadius(20)
-                                
-                                Text("Sign In")
-                                    .foregroundColor(.white)
-                                    .tracking(3)
-                            }
+                            ThemeButtonLabel(buttonText: "Sign In", width: g.size.width - 80, tracking: 2)
                         }
                         
                         // If user taps button, display switches to CreateAccountView()
@@ -143,12 +133,13 @@ struct LoginView: View {
             }
             .frame(width: g.size.width)
         }
-        .background(Color(UIColor(red: 0, green: 0, blue: 0, alpha: 0.68)))
+        .background(Color.offWhite)
     }
 }
 
-//struct LoginView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        LoginView()
-//    }
-//}
+struct LoginView_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        LoginView(loginMode: .constant(Constants.LoginMode.login))
+    }
+}

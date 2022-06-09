@@ -25,7 +25,7 @@ struct FormField: View {
             ZStack {
                 
                 Rectangle()
-                    .fill(Color.offWhite)
+                    .fill(Color.formField)
                 
                 TextField(placeholder, text: $value)
                     .padding(.leading)

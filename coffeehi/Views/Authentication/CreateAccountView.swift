@@ -34,7 +34,7 @@ struct CreateAccountView: View {
                         
                         Text("coffeehi")
                             .font(.largeTitle)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color.titleText)
                             .tracking(8)
                         Image("logo")
                     }
@@ -42,65 +42,14 @@ struct CreateAccountView: View {
                 
                 Spacer()
                 
-                // MARK: Login Form
+                // MARK: New User Form
                 VStack(spacing: 10.0) {
-                    
-                    // Name text field
-                    VStack(alignment: .leading) {
                         
-                        Text("name")
-                            .foregroundColor(Color.kellyGreen)
-                            .tracking(3)
+                        FormField(value: $name, label: "name", placeholder: "Name", width: g.size.width - 60)
                         
-                        ZStack {
-                            
-                            Rectangle()
-                                .fill(Color(UIColor(red: 229, green: 229, blue: 229, alpha: 0.5)))
-                            
-                            TextField("Name", text: $name)
-                                .padding(.leading)
-                        }
-                        .frame(width: g.size.width - 60, height: 44)
-                        .cornerRadius(10)
-                    }
-                    
-                    // Username text field
-                    VStack(alignment: .leading) {
+                        FormField(value: $username, label: "username", placeholder: "Username", width: g.size.width - 60)
                         
-                        Text("username")
-                            .foregroundColor(Color.kellyGreen)
-                            .tracking(3)
-                        
-                        ZStack {
-                            
-                            Rectangle()
-                                .fill(Color(UIColor(red: 229, green: 229, blue: 229, alpha: 0.5)))
-                            
-                            TextField("Username", text: $username)
-                                .padding(.leading)
-                        }
-                        .frame(width: g.size.width - 60, height: 44)
-                        .cornerRadius(10)
-                    }
-                    
-                    // Email text field
-                    VStack(alignment: .leading) {
-                        
-                        Text("email")
-                            .foregroundColor(Color.kellyGreen)
-                            .tracking(3)
-                        
-                        ZStack {
-                            
-                            Rectangle()
-                                .fill(Color(UIColor(red: 229, green: 229, blue: 229, alpha: 0.5)))
-                            
-                            TextField("Email", text: $email)
-                                .padding(.leading)
-                        }
-                        .frame(width: g.size.width - 60, height: 44)
-                        .cornerRadius(10)
-                    }
+                        FormField(value: $email, label: "email", placeholder: "Email", width: g.size.width - 60)
                     
                     // Password text field
                     VStack(alignment: .leading) {
@@ -112,7 +61,7 @@ struct CreateAccountView: View {
                         ZStack {
                             
                             Rectangle()
-                                .fill(Color(UIColor(red: 229, green: 229, blue: 229, alpha: 0.5)))
+                                .fill(Color.formField)
                             
                             SecureField("Password", text: $password)
                                 .padding(.leading)
@@ -125,7 +74,7 @@ struct CreateAccountView: View {
                     // MARK: Sign in button
                     Button {
                         
-                        // Create new account
+                        // Create new account in firebase
                         Auth.auth().createUser(withEmail: email, password: password) { result, error in
                             
                             // Check for errors
@@ -159,14 +108,7 @@ struct CreateAccountView: View {
                             
                             ZStack {
                                 
-                                Rectangle()
-                                    .fill(Color.kellyGreen)
-                                    .frame(width: g.size.width - 80, height: 44)
-                                    .cornerRadius(20)
-                                
-                                Text("Create Account")
-                                    .foregroundColor(.white)
-                                    .tracking(3)
+                                ThemeButtonLabel(buttonText: "Create Account", width: g.size.width - 80, tracking: 2)
                             }
                             
                             // If user taps button, display switches to LoginView()
@@ -186,7 +128,7 @@ struct CreateAccountView: View {
                         }
                     }
                 }
-                
+
                 if errorMessage != nil {
                     Text(errorMessage!)
                         .foregroundColor(.red)
@@ -198,12 +140,12 @@ struct CreateAccountView: View {
             }
             .frame(width: g.size.width)
         }
-        .background(Color(UIColor(red: 0, green: 0, blue: 0, alpha: 0.68)))
+        .background(Color.background)
     }
 }
 
-//struct CreateAccountView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CreateAccountView(loginMode: Constants.LoginMode.createAccount)
-//    }
-//}
+struct CreateAccountView_Previews: PreviewProvider {
+    static var previews: some View {
+        CreateAccountView(loginMode: .constant(Constants.LoginMode.createAccount))
+    }
+}
