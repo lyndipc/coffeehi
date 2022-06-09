@@ -11,10 +11,12 @@ struct PostDraftView: View {
     
     @EnvironmentObject var model: ContentModel
     @State var postBody: String = ""
+    @Binding var showPostDraft: Bool
     
     // Remove default background color on text editor
-    init() {
+    init(showPostDraft: Binding<Bool>) {
         UITextView.appearance().backgroundColor = .clear
+        _showPostDraft = showPostDraft
     }
     
     // TODO: Fix text editor style and rethink alignment/organization
@@ -24,26 +26,24 @@ struct PostDraftView: View {
             
             VStack {
                 
-                LogoHeader()
-                ZStack {
-                    
-                    Rectangle()
-                        .fill(Color.lightGray)
-                        .cornerRadius(10)
+                Group {
                     
                     VStack(alignment: .leading) {
                         
                         HStack(alignment: .top) {
-                            
-                            ProfileImage(width: 35, photo: "travis")
 
-                            TextEditor(text: $postBody)
+                            Image(systemName: "photo")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 25)
                                 .foregroundColor(Color.kellyGreen)
-                                .background(Color.lightGray)
-                        
-                            Spacer()
+                                .padding()
                         }
-                        .padding()
+                        
+                        TextEditor(text: $postBody)
+                            .background(Color.background)
+                            .cornerRadius(5)
+                            .padding()
                         
                         Spacer()
                         
@@ -51,7 +51,13 @@ struct PostDraftView: View {
                         // TODO: Create "draftPost" method
                         HStack {
                             
-                            Button(action: {}, label: {
+                            Button(action: {
+
+                                // Save text as a draft
+                                
+                                // Dismiss sheet
+                                showPostDraft = false
+                            }, label: {
                              
                                 Text("Cancel")
                                     .bold()
@@ -62,8 +68,14 @@ struct PostDraftView: View {
                             
                             Button {
                                 
-                                // Method
+                                // TODO: Add completion to dismiss sheet on createPost method
+                                
+                                // Create new post in db
                                 model.createPost(postBody: postBody)
+                                
+                                // Dismiss sheet
+                                showPostDraft = false
+                                
                             } label: {
                                 
                                 ThemeButtonLabel(buttonText: "Post", width: 100, height: 35, tracking: 0)
@@ -82,6 +94,6 @@ struct PostDraftView: View {
 
 struct PostDraftView_Previews: PreviewProvider {
     static var previews: some View {
-        PostDraftView()
+        PostDraftView(showPostDraft: .constant(true))
     }
 }

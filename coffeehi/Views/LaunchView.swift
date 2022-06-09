@@ -12,7 +12,9 @@ struct LaunchView: View {
     private let tabBarImageNames = ["house", "arrow-trend", "square-plus", "bell", "bell"]
     
     @EnvironmentObject var model: ContentModel
-    @State private var selectedIndex = 0
+    @State private var selectedIndex: Int = 0
+    @State var showPostDraft: Bool = false
+    @State var lastIndex = 0
     
     var body: some View {
         VStack(spacing: 0.0) {
@@ -36,7 +38,7 @@ struct LaunchView: View {
                     case 1:
                         TrendingView()
                     case 2:
-                        PostDraftView()
+                        FeedView()
                     case 3:
                         NotificationView()
                     case 4:
@@ -50,11 +52,22 @@ struct LaunchView: View {
                     .padding(.bottom, 8)
                 
                 HStack(alignment: .center, spacing: 0.0) {
+                    
                     ForEach(0..<5) { index in
                         
                         Button(action: {
                             
+                            // Set the last index prior to button tap
+                            lastIndex = selectedIndex
+                            
+                            // Set index of button that user tapped
                             selectedIndex = index
+                            
+                            // If draft icon is selected, show PostDraftView
+                            if index == 2 {
+                                showPostDraft = true
+                                selectedIndex = lastIndex
+                            }
                         }, label: {
                             
                             Spacer()
@@ -71,6 +84,9 @@ struct LaunchView: View {
                             
                             Spacer()
                         })
+                        .sheet(isPresented: $showPostDraft) {
+                            PostDraftView(showPostDraft: $showPostDraft)
+                        }
                     }
                 }
                 .frame(height: 50)
