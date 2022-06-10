@@ -105,8 +105,6 @@ class ContentModel: ObservableObject {
         }
     }
     
-    // TODO: Add listener to update user's feed as soon as a new post is successfully created, mutated, etc.
-    
     // Get user's feed of recent posts
     func getRecentPosts() {
         
@@ -139,6 +137,7 @@ class ContentModel: ObservableObject {
                     p.likeCount = doc["likeCount"] as? Int ?? 0
                     p.name = doc["name"] as? String ?? ""
                     p.username = doc["username"] as? String ?? ""
+                    p.draft = doc["draft"] as? Bool ?? false
                 
                 post.append(p)
             }
@@ -155,7 +154,7 @@ class ContentModel: ObservableObject {
     // MARK: Data Mutation Methods
     
     // Create new post
-    func createPost(postBody: String?) {
+    func createPost(postBody: String?, draft: Bool) {
 
         // Check that user is authenticated
         guard Auth.auth().currentUser != nil else {
@@ -171,7 +170,8 @@ class ContentModel: ObservableObject {
             "userId": userId!,
             "name": UserService.shared.user.name,
             "username": UserService.shared.user.username,
-            "body": postBody ?? ""
+            "body": postBody ?? "",
+            "draft": draft
         ]
         
         // Firestore post collection path
@@ -189,8 +189,6 @@ class ContentModel: ObservableObject {
             }
         }
     }
-    
-    // TODO: Create save draft post method
     
     // Update user's profile
     func updateProfile(bio: String?, pfp: String?) {

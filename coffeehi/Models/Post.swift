@@ -16,6 +16,7 @@ struct Post: Decodable, Identifiable {
 
     var title: String = ""
     var body: String = ""
+    var draft: Bool = false
     var likeCount: Int = 0
     var likeList: [String] = [""]
     var commentCount: Int = 0

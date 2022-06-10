@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FeedView: View {
     
-    @EnvironmentObject var model:ContentModel
+    @EnvironmentObject var model: ContentModel
     let user = UserService.shared.user
     
     var body: some View {
@@ -19,7 +19,7 @@ struct FeedView: View {
             ScrollView(showsIndicators: false) {
                 
                 PullRefresh(coordinateSpaceName: "pullToRefresh") {
-                    model.getRecentPosts()
+                    
                 }
                 
                 // Display posts in home feed
@@ -29,12 +29,16 @@ struct FeedView: View {
                     
                     let width = g.size.width - 50
                     
+                    // Check that user is authenticated
                     if user.name != "" {
+                        
                         // Loop through post array
                         ForEach(model.posts) {p in
                             
-                            PostView(name: p.name, username: p.username, content: p.body, width: width)
-                                .padding([.top, .leading, .trailing])
+                            if !p.draft {
+                                PostView(name: p.name, username: p.username, content: p.body, width: width)
+                                    .padding([.top, .leading, .trailing])
+                            }
                         }
                     }
                     else {
@@ -44,7 +48,12 @@ struct FeedView: View {
                 }
                 
             }
-            .coordinateSpace(name: "pullToRefresh")
+            .refreshable {
+                DispatchQueue.main.async {
+                    model.getRecentPosts()
+                    print("Retrieved posts!")
+                }
+            }
         }
         .ignoresSafeArea(edges: [.bottom])
     }

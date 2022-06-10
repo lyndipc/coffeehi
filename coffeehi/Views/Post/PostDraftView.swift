@@ -48,12 +48,12 @@ struct PostDraftView: View {
                         Spacer()
                         
                         // TODO: If canceled, prompt user if they would like to save as draft
-                        // TODO: Create "draftPost" method
                         HStack {
                             
                             Button(action: {
 
                                 // Save text as a draft
+                                model.createPost(postBody: postBody, draft: true)
                                 
                                 // Dismiss sheet
                                 showPostDraft = false
@@ -71,7 +71,7 @@ struct PostDraftView: View {
                                 // TODO: Add completion to dismiss sheet on createPost method
                                 
                                 // Create new post in db
-                                model.createPost(postBody: postBody)
+                                model.createPost(postBody: postBody, draft: false)
                                 
                                 // Dismiss sheet
                                 showPostDraft = false
@@ -93,6 +93,7 @@ struct PostDraftView: View {
 }
 
 struct PostDraftView_Previews: PreviewProvider {
+    
     static var previews: some View {
         PostDraftView(showPostDraft: .constant(true))
     }
