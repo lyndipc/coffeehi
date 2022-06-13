@@ -48,10 +48,9 @@ struct FeedView: View {
                 }
                 
             }
-            .refreshable {
+            .onAppear {
                 DispatchQueue.main.async {
                     model.getRecentPosts()
-                    print("Retrieved posts!")
                 }
             }
         }
