@@ -20,6 +20,9 @@ struct FeedView: View {
                 
                 PullRefresh(coordinateSpaceName: "pullToRefresh") {
                     
+                    DispatchQueue.main.async {
+                        model.getRecentPosts()
+                    }
                 }
                 
                 // Display posts in home feed
@@ -48,10 +51,9 @@ struct FeedView: View {
                 }
                 
             }
-            .refreshable {
+            .onAppear {
                 DispatchQueue.main.async {
                     model.getRecentPosts()
-                    print("Retrieved posts!")
                 }
             }
         }

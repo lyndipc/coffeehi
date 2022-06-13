@@ -36,7 +36,7 @@ struct PullRefresh: View {
                         if needRefresh {
                             
                             needRefresh = false
-//                            onRefresh()
+                            onRefresh()
                         }
                     }
             }
@@ -60,9 +60,3 @@ struct PullRefresh: View {
         .padding(.top, -50.0)
     }
 }
-
-//struct PullRefresh_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PullRefresh()
-//    }
-//}
