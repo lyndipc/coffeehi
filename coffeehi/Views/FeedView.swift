@@ -20,6 +20,9 @@ struct FeedView: View {
                 
                 PullRefresh(coordinateSpaceName: "pullToRefresh") {
                     
+                    DispatchQueue.main.async {
+                        model.getRecentPosts()
+                    }
                 }
                 
                 // Display posts in home feed
