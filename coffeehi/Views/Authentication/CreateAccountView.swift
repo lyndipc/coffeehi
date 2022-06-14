@@ -92,11 +92,13 @@ struct CreateAccountView: View {
                             let ref = db.collection("users").document(firebaseUser!.uid)
                             
                             ref.setData(["name": name,
-                                         "username": username
+                                         "username": username,
+                                         "posts": [],
+                                         "profile": ["bio": "", "pfp": ""]
                                         ], merge: true)
                             
                             // Update the user meta data
-                            let user = UserService.shared.user
+                            var user = UserService.shared.user
                             user.name = name
                             
                             // Change the view to logged in view
