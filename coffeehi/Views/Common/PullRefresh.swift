@@ -22,8 +22,6 @@ struct PullRefresh: View {
                 
                 Spacer()
                     .onAppear {
-                        
-                        // Needs to be refreshed
                         needRefresh = true
                     }
             }
@@ -31,10 +29,8 @@ struct PullRefresh: View {
                 
                 Spacer()
                     .onAppear {
-                        
                         // Once pull refresh has contracted, reset needRefresh
                         if needRefresh {
-                            
                             needRefresh = false
                             onRefresh()
                         }

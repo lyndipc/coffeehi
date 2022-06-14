@@ -128,8 +128,8 @@
 				3D444D9C284C28CD00916BF5 /* FormField.swift */,
 				3DAA981528369D3800AAD340 /* LogoHeader.swift */,
 				3D2212462837668E005C0F43 /* ProfileImage.swift */,
-				3D444D9E284C2D7000916BF5 /* ThemeButtonLabel.swift */,
 				3D9BA075284E933D002AD27B /* PullRefresh.swift */,
+				3D444D9E284C2D7000916BF5 /* ThemeButtonLabel.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";

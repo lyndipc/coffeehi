@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct Post: Decodable, Identifiable {
-
+struct Post: Identifiable {
     var id: String = ""
     var userId: String = ""
     var username: String = ""
@@ -26,7 +25,6 @@ struct Post: Decodable, Identifiable {
 }
 
 struct Location: Decodable {
-    
     var latitude: Double?
     var longitude: Double?
 }

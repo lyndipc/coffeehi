@@ -7,10 +7,14 @@
 
 import Foundation
 
-class User: Decodable, Identifiable {
+struct User: Identifiable {
     var id: String = ""
     var name: String = ""
     var username: String = ""
     var bio: String = ""
     var pfp: String = ""
+    var posts: [String] = []
+    var postsCount: Int {
+        posts.count
+    }
 }

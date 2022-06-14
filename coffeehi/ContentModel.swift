@@ -65,7 +65,7 @@ class ContentModel: ObservableObject {
                 
                 // Create user instance
                 var user = [User]()
-                let u = User()
+                var u = User()
                 
                 // If document snapshot contains data & no errors are returned
                 guard error == nil, docSnapshot != nil else {
@@ -165,6 +165,9 @@ class ContentModel: ObservableObject {
         // Current user id
         let userId = Auth.auth().currentUser?.uid
         
+        // Create document id for new post
+        let postId = UUID().uuidString
+        
         // Store post data in dict
         let postData: [String: Any] = [
             "userId": userId!,
@@ -174,11 +177,8 @@ class ContentModel: ObservableObject {
             "draft": draft
         ]
         
-        // Firestore post collection path
-        let newPost = db.collection("post")
-        
         // Add new post data to firestore
-        newPost.addDocument(data: postData) { error in
+        db.collection("post").document(postId).setData(postData) { error in
             
             if error != nil {
                 print("Problem adding post to database")
@@ -186,6 +186,20 @@ class ContentModel: ObservableObject {
             }
             else {
                 print("Post created successfully")
+            }
+        }
+
+        // Add reference to new post in user document
+        let userDoc = db.collection("users").document(userId!)
+        
+        userDoc.setData(["posts" : FieldValue.arrayUnion([postId])], merge: true) { error in
+
+            if error != nil {
+                print("Problem updating user post id in database")
+                print(error!.localizedDescription)
+            }
+            else {
+                print("User post data updated successfully")
             }
         }
     }
