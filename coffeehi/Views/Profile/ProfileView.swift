@@ -97,6 +97,9 @@ struct ProfileView: View {
                         }
                     }
                 }
+                .onAppear {
+                    model.getUserData()
+                }
             }
         }
     }
