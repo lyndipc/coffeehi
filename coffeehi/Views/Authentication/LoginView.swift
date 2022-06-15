@@ -47,7 +47,7 @@ struct LoginView: View {
                     // Username text field
                     FormField(value: $email, label: "email", placeholder: "Email", width: g.size.width - 60)
                     
-                    // MARK: Password text field
+                    // Password text field
                     VStack(alignment: .leading) {
                         
                         Text("password")

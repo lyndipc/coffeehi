@@ -18,8 +18,8 @@ struct FeedView: View {
             
             ScrollView(showsIndicators: false) {
                 
+                // When user pulls down on screen, refresh posts
                 PullRefresh(coordinateSpaceName: "pullToRefresh") {
-                    
                     DispatchQueue.main.async {
                         model.getRecentPosts()
                     }
@@ -35,7 +35,7 @@ struct FeedView: View {
                     // Check that user is authenticated
                     if user.name != "" {
                         
-                        // Loop through post array
+                        // Loop through post dictionary
                         ForEach(model.posts) {p in
                             
                             if !p.draft {

@@ -204,6 +204,21 @@ class ContentModel: ObservableObject {
         }
     }
     
+    // Follow a user
+    func followUser(followedUser: String?) {
+        
+        // Check that current user is valid
+        guard Auth.auth().currentUser != nil else {
+            print("User not authenticated")
+            return
+        }
+        
+        // Add followedUser to currentUser's Following list
+        
+        
+        // Add currentUser to followedUser's Followers List
+    }
+    
     // Update user's profile
     func updateProfile(bio: String?, pfp: String?) {
         
