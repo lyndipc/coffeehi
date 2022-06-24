@@ -13,6 +13,10 @@ import FirebaseFirestore
 
 // TODO: Follow/unfollow methods
 
+// TODO: Share content method
+
+// TODO: Get draft posts method (and display in List)
+
 class ContentModel: ObservableObject {
     
     // Reference to Cloud Firestore

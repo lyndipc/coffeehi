@@ -16,6 +16,10 @@ struct ProfileView: View {
     
     var body: some View {
         
+        // TODO: Check if viewing current user or other user's profile
+        // TODO: Add followers/following button to view list
+        
+        
         GeometryReader { g in
             
             ScrollView(showsIndicators: false) {
