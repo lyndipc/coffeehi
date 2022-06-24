@@ -52,6 +52,23 @@ class ContentModel: ObservableObject {
         }
     }
     
+    // Sign out current user
+    func signOut() {
+        
+        do {
+            try Auth.auth().signOut()
+            
+            // Update UI upon sign signout
+            DispatchQueue.main.async {
+                self.loggedIn = false
+            }
+        }
+        catch {
+            print("Couldn't sign out user")
+            print(error.localizedDescription)
+        }
+    }
+    
     
     // MARK: Data Retrieval Methods
     

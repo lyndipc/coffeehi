@@ -28,30 +28,18 @@ struct ProfileView: View {
                     
                     VStack {
                         
-                        // Edit profile button
+                        // Sign out user button
                         Button {
-                            
-                            // Attempt to sign out user
-                            do {
-                                try Auth.auth().signOut()
-                                
-                                // Update UI upon sign signout
-                                DispatchQueue.main.async {
-                                    model.loggedIn = false
-                                }
-                            }
-                            catch {
-                                print("Couldn't sign out user")
-                                print(error.localizedDescription)
-                            }
+                            model.signOut()
                         } label: {
-                            
                             Text("Sign Out")
                         }
                         
                         // Loop through user data model
                         ForEach(model.user) { m in
                             // TODO: Swap sf symbol icon with custom
+                            // TODO: Conditionally display edit profile button
+                            // Edit profile button
                             Button {
                                 
                                 editProfileVisible = true
@@ -80,12 +68,39 @@ struct ProfileView: View {
                             Text("@\(user.username)")
                                 .foregroundColor(.gray)
                             
-                            // TODO: Update user bio after saving new data
+                            // Following/Followers Count Button
+                            HStack {
+                                
+                                Button {
+                                    // Show who user is following
+                                } label: {
+                                    
+                                    HStack {
+                                        Text("50")
+                                            .bold()
+                                        Text("Following")
+                                    }
+                                    .foregroundColor(.black)
+                                }
+                                
+                                Button {
+                                    // Show user's followers
+                                } label: {
+                                    
+                                    HStack {
+                                        Text("25")
+                                            .bold()
+                                        Text("Followers")
+                                    }
+                                    .foregroundColor(.black)
+                                }
+                            }
+                            
                             // User bio
                             Text(m.bio)
                                 .frame(minHeight: 30, maxHeight: 60)
                                 .frame(width: g.size.width - 85)
-                                .padding(.vertical, 10.0)
+                                .padding(.bottom, 10.0)
                         }
                     }
                     
