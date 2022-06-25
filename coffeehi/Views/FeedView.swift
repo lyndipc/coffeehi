@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FeedView: View {
     
-    @EnvironmentObject var model: ContentModel
+    @EnvironmentObject var postController: PostController
     let user = UserService.shared.user
     
     var body: some View {
@@ -21,7 +21,7 @@ struct FeedView: View {
                 // When user pulls down on screen, refresh posts
                 PullRefresh(coordinateSpaceName: "pullToRefresh") {
                     DispatchQueue.main.async {
-                        model.getRecentPosts()
+                        postController.getRecentPosts()
                     }
                 }
                 
@@ -36,7 +36,7 @@ struct FeedView: View {
                     if user.name != "" {
                         
                         // Loop through post dictionary
-                        ForEach(model.posts) {p in
+                        ForEach(postController.posts) {p in
                             
                             if !p.draft {
                                 PostView(name: p.name, username: p.username, content: p.body, width: width)
@@ -53,7 +53,7 @@ struct FeedView: View {
             }
             .onAppear {
                 DispatchQueue.main.async {
-                    model.getRecentPosts()
+                    postController.getRecentPosts()
                 }
             }
         }
@@ -64,6 +64,6 @@ struct FeedView: View {
 struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
         FeedView()
-            .environmentObject(ContentModel())
+            .environmentObject(PostController())
     }
 }

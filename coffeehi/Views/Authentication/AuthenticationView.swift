@@ -9,7 +9,6 @@ import SwiftUI
 
 struct AuthenticationView: View {
     
-    @EnvironmentObject var model: ContentModel
     @State var loginMode = Constants.LoginMode.login
     
     var body: some View {

@@ -55,7 +55,7 @@ class UserController: ObservableObject {
     }
     
     
-    // MARK: User Data Retrieval
+    // MARK: Data Retrieval Methods
     
     // Get all data for authenticated user
     func getUserData() {
@@ -110,7 +110,7 @@ class UserController: ObservableObject {
     }
     
     
-    // MARK: Create User Data
+    // MARK: Data Creation Methods
     
     // Follow a user
     func followUser(followedUser: String?) {
@@ -127,7 +127,7 @@ class UserController: ObservableObject {
     }
     
     
-    // MARK: Update User Data
+    // MARK: Data Mutation Methods
     
     // Update user's profile
     func updateProfile(bio: String?, pfp: String?) {

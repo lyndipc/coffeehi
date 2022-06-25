@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PostDraftView: View {
     
-    @EnvironmentObject var model: ContentModel
+    @EnvironmentObject var postController: PostController
     @State var postBody: String = ""
     @Binding var showPostDraft: Bool
     
@@ -53,7 +53,7 @@ struct PostDraftView: View {
                             Button(action: {
 
                                 // Save text as a draft
-                                model.createPost(postBody: postBody, draft: true)
+                                postController.createPost(postBody: postBody, draft: true)
                                 
                                 // Dismiss sheet
                                 showPostDraft = false
@@ -71,7 +71,7 @@ struct PostDraftView: View {
                                 // TODO: Add completion to dismiss sheet on createPost method
                                 
                                 // Create new post in db
-                                model.createPost(postBody: postBody, draft: false)
+                                postController.createPost(postBody: postBody, draft: false)
                                 
                                 // Dismiss sheet
                                 showPostDraft = false
