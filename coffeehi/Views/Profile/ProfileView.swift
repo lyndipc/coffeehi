@@ -106,6 +106,7 @@ struct ProfileView: View {
                     
                     Divider()
                     
+                    // TODO: Add user shared and created content to Profile & add refresh method
                     LazyVStack {
                         
                         ForEach(0..<10) {_ in
@@ -124,8 +125,10 @@ struct ProfileView: View {
     }
 }
 
-//struct ProfileView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ProfileView()
-//    }
-//}
+struct ProfileView_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        ProfileView()
+            .environmentObject(ContentModel())
+    }
+}
