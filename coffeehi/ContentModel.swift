@@ -22,12 +22,6 @@ class ContentModel: ObservableObject {
     // Reference to Cloud Firestore
     let db = FirebaseFirestore.Firestore.firestore()
     
-    // List of user data
-    @Published var user = [User]()
-    
-    // Authentication
-    @Published var loggedIn = false
-    
     // List of posts
     @Published var posts: [Post] = [Post]()
     
@@ -37,94 +31,62 @@ class ContentModel: ObservableObject {
     init() {
     }
     
-    // MARK: Authentication Methods
-    
-    // Check if user is logged in
-    func checkLogin() {
-        
-        // Check if there's a current user
-        loggedIn = Auth.auth().currentUser != nil ? true : false
-        
-        // Check if user meta data has been fetched
-        if UserService.shared.user.name == "" {
-            
-            self.getUserData()
-        }
-    }
-    
-    // Sign out current user
-    func signOut() {
-        
-        do {
-            try Auth.auth().signOut()
-            
-            // Update UI upon sign signout
-            DispatchQueue.main.async {
-                self.loggedIn = false
-            }
-        }
-        catch {
-            print("Couldn't sign out user")
-            print(error.localizedDescription)
-        }
-    }
-    
     
     // MARK: Data Retrieval Methods
     
     // Get user data
-    func getUserData() {
-        
-        // Fetch data from Firestore
-        if let userId = Auth.auth().currentUser?.uid {
-            
-            // Create reference to user document
-            let users = db.collection("users").document(userId)
-            
-            // Retrieve user document from firestore
-            users.getDocument { docSnapshot, error in
-                
-                // Create user instance
-                var user = [User]()
-                var u = User()
-                
-                // If document snapshot contains data & no errors are returned
-                guard error == nil, docSnapshot != nil else {
-                    print(error!.localizedDescription)
-                    return
-                }
-                
-                // Extract fields from document snapshot and store in UserService
-                u.id = docSnapshot?.get("id") as? String ?? ""
-                u.name = docSnapshot?.get("name") as? String ?? ""
-                u.username = docSnapshot?.get("username") as? String ?? ""
-                
-                // Extract map from document snapshot
-                let profileMap = docSnapshot?.get("profile") as! [String: Any]
-                
-                // Store profile data in UserService
-                u.bio = profileMap["bio"] as? String ?? ""
-                u.pfp = profileMap["pfp"] as? String ?? ""
-                
-                user.append(u)
-                
-                DispatchQueue.main.async {
-                    
-                    // Store user data locally
-                    UserService.shared.user = u
-                    
-                    self.user = user
-                }
-            }
-            
-            // Update user's feed
-            getRecentPosts()
-        }
-        else {
-            
-            return
-        }
-    }
+//    func getUserData() {
+//
+//        // Fetch data from Firestore
+//        if let userId = Auth.auth().currentUser?.uid {
+//
+//            // Create reference to user document
+//            let users = db.collection("users").document(userId)
+//
+//            // Retrieve user document from firestore
+//            users.getDocument { docSnapshot, error in
+//
+//                // Create user instance
+//                var user = [User]()
+//                var u = User()
+//
+//                // If document snapshot contains data & no errors are returned
+//                guard error == nil, docSnapshot != nil else {
+//                    print(error!.localizedDescription)
+//                    return
+//                }
+//
+//                // Extract fields from document snapshot and store in UserService
+//                u.id = docSnapshot?.get("id") as? String ?? ""
+//                u.name = docSnapshot?.get("name") as? String ?? ""
+//                u.username = docSnapshot?.get("username") as? String ?? ""
+//
+//                // Extract map from document snapshot
+//                let profileMap = docSnapshot?.get("profile") as! [String: Any]
+//
+//                // Store profile data in UserService
+//                u.bio = profileMap["bio"] as? String ?? ""
+//                u.pfp = profileMap["pfp"] as? String ?? ""
+//
+//                user.append(u)
+//
+//                DispatchQueue.main.async {
+//
+//                    // Store user data locally
+//                    UserService.shared.user = u
+//
+//                    self.user = user
+//                }
+//            }
+//
+//            // Update user's feed
+//            getRecentPosts()
+//        }
+//        else {
+//
+//            return
+//        }
+//    }
     
     // Get user's feed of recent posts
     func getRecentPosts() {
@@ -221,43 +183,6 @@ class ContentModel: ObservableObject {
             }
             else {
                 print("User post data updated successfully")
-            }
-        }
-    }
-    
-    // Follow a user
-    func followUser(followedUser: String?) {
-        
-        // Check that current user is valid
-        guard Auth.auth().currentUser != nil else {
-            print("User not authenticated")
-            return
-        }
-        
-        // Add followedUser to currentUser's Following list
-        
-        
-        // Add currentUser to followedUser's Followers List
-    }
-    
-    // Update user's profile
-    func updateProfile(bio: String?, pfp: String?) {
-        
-        // Check that there is a valid user
-        if let userId = Auth.auth().currentUser?.uid {
-            
-            // Create dictionary of unwrapped profile data
-            let profileData = [
-                "bio": bio ?? "",
-                "pfp": pfp ?? ""
-            ]
-            
-            // Update profile info in firestore
-            let users = db.collection("users")
-            users.document(userId).updateData(["profile": profileData])
-            
-            DispatchQueue.main.async {
-                self.getUserData()
             }
         }
     }

@@ -11,7 +11,7 @@ struct LaunchView: View {
     
     private let tabBarImageNames = ["house", "arrow-trend", "square-plus", "bell", "bell"]
     
-    @EnvironmentObject var model: ContentModel
+    @EnvironmentObject var userController: UserController
     @State private var selectedIndex: Int = 0
     @State var showPostDraft: Bool = false
     @State var lastIndex = 0
@@ -20,12 +20,12 @@ struct LaunchView: View {
         VStack(spacing: 0.0) {
             
             // TODO: Authenticate user prior to showing FeedView
-            if model.loggedIn == false {
+            if userController.loggedIn == false {
                 
                 // Display LoginView() if user is not logged in
                 AuthenticationView()
                     .onAppear {
-                        model.checkLogin()
+                        userController.checkLogin()
                     }
             }
             else {

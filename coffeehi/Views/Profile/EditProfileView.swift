@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EditProfileView: View {
     
-    @EnvironmentObject var model: ContentModel
+    @EnvironmentObject var userController: UserController
     @State var bio: String
     @State var pfp: String
     @Binding var editProfileVisible: Bool
@@ -37,7 +37,7 @@ struct EditProfileView: View {
                 Button {
                     
                     // Update user profile with new changes
-                    model.updateProfile(bio: bio, pfp: pfp)
+                    userController.updateProfile(bio: bio, pfp: pfp)
                     
                     // Dismiss sheet
                     DispatchQueue.main.async {

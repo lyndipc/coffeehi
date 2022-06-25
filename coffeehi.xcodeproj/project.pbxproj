@@ -35,6 +35,8 @@
 		3DAA981628369D3800AAD340 /* LogoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA981528369D3800AAD340 /* LogoHeader.swift */; };
 		3DAA981828369FD100AAD340 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA981728369FD100AAD340 /* PostDetailView.swift */; };
 		3DAA981A2836AE1D00AAD340 /* TrendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAA98192836AE1D00AAD340 /* TrendingView.swift */; };
+		3DEBF5502867C6BD00C48712 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEBF54F2867C6BD00C48712 /* PostController.swift */; };
+		3DEBF5522867C6D800C48712 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEBF5512867C6D800C48712 /* UserController.swift */; };
 		469EB7CC57865816AB763B5E /* Pods_coffeehi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83D878AF5D48F1169380C53 /* Pods_coffeehi.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +72,8 @@
 		3DAA981528369D3800AAD340 /* LogoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoHeader.swift; sourceTree = "<group>"; };
 		3DAA981728369FD100AAD340 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		3DAA98192836AE1D00AAD340 /* TrendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingView.swift; sourceTree = "<group>"; };
+		3DEBF54F2867C6BD00C48712 /* PostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
+		3DEBF5512867C6D800C48712 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		D83D878AF5D48F1169380C53 /* Pods_coffeehi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_coffeehi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -159,7 +163,7 @@
 				3D67C36E282F7A4700771072 /* coffeehiApp.swift */,
 				3D9E8EDB2848A35900FA0599 /* Helpers */,
 				3D67C37E282F7A7B00771072 /* Models */,
-				3D67C37D282F7A7000771072 /* ViewModels */,
+				3D67C37D282F7A7000771072 /* ViewControllers */,
 				3D67C37C282F7A6500771072 /* Views */,
 				3D67C372282F7A4A00771072 /* Assets.xcassets */,
 				3D67C374282F7A4A00771072 /* Preview Content */,
@@ -190,12 +194,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		3D67C37D282F7A7000771072 /* ViewModels */ = {
+		3D67C37D282F7A7000771072 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				3D9C73A62842B5DA00244B60 /* ContentModel.swift */,
+				3DEBF54F2867C6BD00C48712 /* PostController.swift */,
+				3DEBF5512867C6D800C48712 /* UserController.swift */,
 			);
-			name = ViewModels;
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		3D67C37E282F7A7B00771072 /* Models */ = {
@@ -346,11 +352,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DEBF5522867C6D800C48712 /* UserController.swift in Sources */,
 				3D1F01962849E1C40021A7FB /* EditProfileView.swift in Sources */,
 				3DAA981828369FD100AAD340 /* PostDetailView.swift in Sources */,
 				3D444D9D284C28CD00916BF5 /* FormField.swift in Sources */,
 				3D1F019128496CC20021A7FB /* CreateAccountView.swift in Sources */,
 				3D22124528376545005C0F43 /* ProfileView.swift in Sources */,
+				3DEBF5502867C6BD00C48712 /* PostController.swift in Sources */,
 				3DA5608E2834543200176B53 /* EngagementBar.swift in Sources */,
 				3DAA981628369D3800AAD340 /* LogoHeader.swift in Sources */,
 				3DAA981A2836AE1D00AAD340 /* TrendingView.swift in Sources */,

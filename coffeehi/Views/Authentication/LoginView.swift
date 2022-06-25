@@ -12,7 +12,7 @@ import FirebaseFirestore
 // TODO: Pull out Login and Create Account logic and create AuthView()
 struct LoginView: View {
     
-    @EnvironmentObject var model: ContentModel
+    @EnvironmentObject var userController: UserController
     @Binding var loginMode: Constants.LoginMode
     @State var email: String = ""
     @State var password: String = ""
@@ -93,10 +93,10 @@ struct LoginView: View {
                                 self.errorMessage = nil
                                 
                                 // Get authenticated user's data
-                                model.getUserData()
+                                userController.getUserData()
                                 
                                 // Change the view to FeedView()
-                                model.checkLogin()
+                                userController.checkLogin()
                             }
                             
                         } label: {

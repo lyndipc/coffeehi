@@ -10,7 +10,7 @@ import FirebaseAuth
 
 struct ProfileView: View {
     
-    @EnvironmentObject var model: ContentModel
+    @EnvironmentObject var userController: UserController
     @State var editProfileVisible = false
     let user = UserService.shared.user
     
@@ -30,13 +30,13 @@ struct ProfileView: View {
                         
                         // Sign out user button
                         Button {
-                            model.signOut()
+                            userController.signOut()
                         } label: {
                             Text("Sign Out")
                         }
                         
                         // Loop through user data model
-                        ForEach(model.user) { m in
+                        ForEach(userController.user) { m in
                             // TODO: Swap sf symbol icon with custom
                             // TODO: Conditionally display edit profile button
                             // Edit profile button
@@ -118,7 +118,7 @@ struct ProfileView: View {
                     }
                 }
                 .onAppear {
-                    model.getUserData()
+                    userController.getUserData()
                 }
             }
         }

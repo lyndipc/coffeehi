@@ -11,7 +11,7 @@ import FirebaseFirestore
 
 struct CreateAccountView: View {
     
-    @EnvironmentObject var model: ContentModel
+    @EnvironmentObject var userController: UserController
     @Binding var loginMode: Constants.LoginMode
     @State var email: String = ""
     @State var password: String = ""
@@ -74,6 +74,7 @@ struct CreateAccountView: View {
                     // MARK: Sign in button
                     Button {
                         
+                        // TODO: Move to UserController
                         // Create new account in firebase
                         Auth.auth().createUser(withEmail: email, password: password) { result, error in
                             
@@ -102,7 +103,7 @@ struct CreateAccountView: View {
                             user.name = name
                             
                             // Change the view to logged in view
-                            self.model.checkLogin()
+                            self.userController.checkLogin()
                         }
                     } label: {
                         
