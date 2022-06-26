@@ -61,6 +61,7 @@ class PostController: ObservableObject {
                     p.likeCount = doc["likeCount"] as? Int ?? 0
                     p.name = doc["name"] as? String ?? ""
                     p.username = doc["username"] as? String ?? ""
+                    p.userId = doc["userId"] as? String ?? ""
                     p.draft = doc["draft"] as? Bool ?? false
                 
                 post.append(p)
@@ -113,7 +114,7 @@ class PostController: ObservableObject {
             }
         }
 
-        // Reference to user doc 
+        // Reference to user doc
         let userDoc = db.collection("users").document(userId!)
         
         // Create reference to new post in user doc

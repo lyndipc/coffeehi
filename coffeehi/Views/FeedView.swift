@@ -39,7 +39,7 @@ struct FeedView: View {
                         ForEach(postController.posts) {p in
                             
                             if !p.draft {
-                                PostView(name: p.name, username: p.username, content: p.body, width: width)
+                                PostView(name: p.name, username: p.username, id: p.userId, content: p.body, width: width)
                                     .padding([.top, .leading, .trailing])
                             }
                         }

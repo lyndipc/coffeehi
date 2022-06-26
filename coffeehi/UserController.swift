@@ -9,8 +9,6 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
-// TODO: getUserData no longer calls getRecentPosts --> add to FeedView
-
 class UserController: ObservableObject {
     
     // Reference to Firestore
@@ -21,7 +19,7 @@ class UserController: ObservableObject {
     
     // Authentication state
     @Published var loggedIn = false
-
+    
     
     // MARK: Authentication Methods
     
@@ -113,17 +111,38 @@ class UserController: ObservableObject {
     // MARK: Data Creation Methods
     
     // Follow a user
-    func followUser(followedUser: String?) {
+    func followUser(followedUser: String?, followedUserId: String?, followedUserPfp: String?) {
         
         // Check currentUser is valid
-        guard Auth.auth().currentUser != nil else {
-            print("User not authenticated")
-            return
+        if let userId = Auth.auth().currentUser?.uid {
+            
+            // TODO: Add followedUser to currentUser's Following map
+            let newFollow = [
+                "following": [
+                    "\(followedUserId ?? "Unknown")": [
+                        "name": followedUser ?? "Some person",
+                        "pfp": followedUserPfp ?? "pfp"
+                    ]
+                ]
+            ]
+            
+            // TODO: Prevent user from following themselves
+            // TODO: Limit how many users can be followed in a given amount of time
+            
+            // TODO: Needs Fix: Data is being overwritten in db
+            db.collection("users").document(userId).updateData(newFollow) { error in
+                
+                if error != nil {
+                    print("Problem following user")
+                    print(error!.localizedDescription)
+                } else {
+                    print("Followed user!")
+                }
+            }
+            
+            // TODO: Add currentUser to followedUser's Followers map
+            
         }
-        
-        // TODO: Add followedUser to currentUser's Following map
-        
-        // TODO: Add currentUser to followedUser's Followers map
     }
     
     

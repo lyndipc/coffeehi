@@ -126,7 +126,6 @@
 		3D31C0E528337A63000832D4 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				3DA5608D2834543200176B53 /* EngagementBar.swift */,
 				3D444D9C284C28CD00916BF5 /* FormField.swift */,
 				3DAA981528369D3800AAD340 /* LogoHeader.swift */,
 				3D2212462837668E005C0F43 /* ProfileImage.swift */,
@@ -223,6 +222,7 @@
 		3DAA981428369CF300AAD340 /* Post */ = {
 			isa = PBXGroup;
 			children = (
+				3DA5608D2834543200176B53 /* EngagementBar.swift */,
 				3D95C9DB283C2FDE0006EC30 /* PostDraftView.swift */,
 				3DAA981728369FD100AAD340 /* PostDetailView.swift */,
 				3DA5608B28343DF200176B53 /* PostView.swift */,

@@ -9,8 +9,10 @@ import SwiftUI
 
 struct PostView: View {
     
+    @EnvironmentObject var userController: UserController
     var name: String?
     var username: String?
+    var id: String?
     var content: String?
     var width: CGFloat?
     
@@ -29,6 +31,14 @@ struct PostView: View {
                     .bold()
             }
             .frame(height: 55)
+            
+            // TODO: Conditionally display button based on whether currentUser is following user or not
+            Button {
+                // call follow user method
+                userController.followUser(followedUser: name, followedUserId: id, followedUserPfp: "pfp")
+            } label: {
+                Text("Follow")
+            }
             
             // TODO: Create conditional --> If image was posted, it will display here
             
