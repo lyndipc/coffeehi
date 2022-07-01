@@ -117,20 +117,22 @@ class UserController: ObservableObject {
         if let userId = Auth.auth().currentUser?.uid {
             
             // TODO: Add followedUser to currentUser's Following map
+            // Create new map of followed user information
             let newFollow = [
-                "following": [
-                    "\(followedUserId ?? "Unknown")": [
-                        "name": followedUser ?? "Some person",
-                        "pfp": followedUserPfp ?? "pfp"
-                    ]
+                "\(followedUserId ?? "Unknown")": [
+                    "name": followedUser ?? "Some person",
+                    "pfp": followedUserPfp ?? "pfp"
                 ]
             ]
             
             // TODO: Prevent user from following themselves
             // TODO: Limit how many users can be followed in a given amount of time
             
-            // TODO: Needs Fix: Data is being overwritten in db
-            db.collection("users").document(userId).updateData(newFollow) { error in
+            // Ref to user doc
+            let userDoc = db.collection("users").document(userId)
+            
+            // Add map to "Following" array
+            userDoc.setData(["following": FieldValue.arrayUnion([newFollow])], merge: true) { error in
                 
                 if error != nil {
                     print("Problem following user")
@@ -140,7 +142,25 @@ class UserController: ObservableObject {
                 }
             }
             
+            // Create new follower from currentUser
+            let newFollower = [
+                "\(userId)": [
+                    "name": UserService.shared.user.name,
+                    "pfp": UserService.shared.user.pfp
+                ]
+            ]
+            
             // TODO: Add currentUser to followedUser's Followers map
+            let followedUserDoc = db.collection("users").document(followedUserId!)
+            followedUserDoc.setData(["followers": FieldValue.arrayUnion([newFollower])], merge: true) { error in
+                
+                if error != nil {
+                    print("Problem adding followed user")
+                    print(error!.localizedDescription)
+                } else {
+                    print("Added new follower!")
+                }
+            }
             
         }
     }

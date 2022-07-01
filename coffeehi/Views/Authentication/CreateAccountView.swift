@@ -95,7 +95,9 @@ struct CreateAccountView: View {
                             ref.setData(["name": name,
                                          "username": username,
                                          "posts": [],
-                                         "profile": ["bio": "", "pfp": ""]
+                                         "profile": ["bio": "", "pfp": ""],
+                                         "following": [],
+                                         "followers": []
                                         ], merge: true)
                             
                             // Update the user meta data
