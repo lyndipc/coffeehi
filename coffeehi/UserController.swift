@@ -101,8 +101,7 @@ class UserController: ObservableObject {
                     self.user = user
                 }
             }
-        }
-        else {
+        } else {
             return
         }
     }
@@ -113,10 +112,21 @@ class UserController: ObservableObject {
     // Follow a user
     func followUser(followedUser: String?, followedUserId: String?, followedUserPfp: String?) {
         
-        // Check currentUser is valid
+        // Check currentUser is valid & create userId property
         if let userId = Auth.auth().currentUser?.uid {
             
-            // TODO: Add followedUser to currentUser's Following map
+            // Check that the user attempting to be followed is valid
+            guard followedUserId != nil, followedUser != nil, followedUserPfp != nil else {
+                print("ERROR: Cannot follow user. User not found.")
+                return
+            }
+            
+            // Check that followed user is not the same as current user
+            guard followedUserId != userId else {
+                print("Cannot follow yourself")
+                return
+            }
+            
             // Create new map of followed user information
             let newFollow = [
                 "\(followedUserId ?? "Unknown")": [
@@ -125,7 +135,6 @@ class UserController: ObservableObject {
                 ]
             ]
             
-            // TODO: Prevent user from following themselves
             // TODO: Limit how many users can be followed in a given amount of time
             
             // Ref to user doc
@@ -150,7 +159,7 @@ class UserController: ObservableObject {
                 ]
             ]
             
-            // TODO: Add currentUser to followedUser's Followers map
+            // TODO: Add currentUser to followedUser's followers map
             let followedUserDoc = db.collection("users").document(followedUserId!)
             followedUserDoc.setData(["followers": FieldValue.arrayUnion([newFollower])], merge: true) { error in
                 
@@ -162,6 +171,8 @@ class UserController: ObservableObject {
                 }
             }
             
+        } else {
+            return
         }
     }
     
