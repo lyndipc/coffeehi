@@ -75,6 +75,11 @@ class PostController: ObservableObject {
         }
     }
     
+    // TODO: Refactor getRecentPosts -- draft (bool) should be renamed to published
+    // TODO: Create new document "drafts" to store all of user's draft data
+    // TODO: Create new method to retrieve drafts
+    // TODO: Display drafts in UI
+    
     
     // MARK: Data Mutation Methods
     

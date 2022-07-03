@@ -78,9 +78,11 @@ class UserController: ObservableObject {
                 }
                 
                 // Extract fields from docSnapshot and store
-                u.id = docSnapshot?.get("id") as? String ?? ""
+                u.id = userId
                 u.name = docSnapshot?.get("name") as? String ?? ""
                 u.username = docSnapshot?.get("username") as? String ?? ""
+                u.followers = docSnapshot?.get("followers") as? [Any] ?? []
+                u.following = docSnapshot?.get("following") as? [Any] ?? []
                 
                 // Extract map from docSnapshot
                 let profileMap = docSnapshot?.get("profile") as! [String: Any]
@@ -140,7 +142,7 @@ class UserController: ObservableObject {
             // Ref to user doc
             let userDoc = db.collection("users").document(userId)
             
-            // Add map to "Following" array
+            // Add followed account to currentUser's following list
             userDoc.setData(["following": FieldValue.arrayUnion([newFollow])], merge: true) { error in
                 
                 if error != nil {
@@ -159,7 +161,7 @@ class UserController: ObservableObject {
                 ]
             ]
             
-            // TODO: Add currentUser to followedUser's followers map
+            // Add currentUser to followedUser's followers map
             let followedUserDoc = db.collection("users").document(followedUserId!)
             followedUserDoc.setData(["followers": FieldValue.arrayUnion([newFollower])], merge: true) { error in
                 

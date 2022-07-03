@@ -17,4 +17,12 @@ struct User: Identifiable {
     var postsCount: Int {
         posts.count
     }
+    var followers: [Any] = []
+    var followersCount: Int {
+        followers.count
+    }
+    var following: [Any] = []
+    var followingCount: Int {
+        following.count
+    }
 }
