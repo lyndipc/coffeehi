@@ -129,41 +129,38 @@ class UserController: ObservableObject {
                 return
             }
             
-            // Create new map of followed user information
-            let newFollow = [
-                "\(followedUserId ?? "Unknown")": [
-                    "name": followedUser ?? "Some person",
-                    "pfp": followedUserPfp ?? "pfp"
-                ]
-            ]
-            
             // TODO: Limit how many users can be followed in a given amount of time
             
-            // Ref to user doc
-            let userDoc = db.collection("users").document(userId)
+            // Create a document referencing the followed user's id in the current user's following collection
+            let userDoc = db.collection("users").document(userId).collection("following").document(followedUserId!)
             
-            // Add followed account to currentUser's following list
-            userDoc.setData(["following": FieldValue.arrayUnion([newFollow])], merge: true) { error in
-                
+            // Create new object from followed user's data
+            let followingData: [String: Any] = [
+                "name": followedUser ?? "",
+                "username": "sampleUserName",
+                "pfp": followedUserPfp ?? ""
+            ]
+            
+            // Add followed user's data to current user's collection
+            userDoc.setData(followingData) { error in
                 if error != nil {
-                    print("Problem following user")
+                    print("Problem following user!")
                     print(error!.localizedDescription)
                 } else {
                     print("Followed user!")
                 }
             }
             
-            // Create new follower from currentUser
-            let newFollower = [
-                "\(userId)": [
-                    "name": UserService.shared.user.name,
-                    "pfp": UserService.shared.user.pfp
-                ]
+            // Create new object from currentUser's data
+            let followerData: [String: Any] = [
+                "name": UserService.shared.user.name,
+                "username": UserService.shared.user.username,
+                "pfp": UserService.shared.user.pfp
             ]
             
-            // Add currentUser to followedUser's followers map
-            let followedUserDoc = db.collection("users").document(followedUserId!)
-            followedUserDoc.setData(["followers": FieldValue.arrayUnion([newFollower])], merge: true) { error in
+            // Add current user's id to the followed user's followers collection
+            let followedUserDoc = db.collection("users").document(followedUserId!).collection("followers").document(userId)
+            followedUserDoc.setData(followerData) { error in
                 
                 if error != nil {
                     print("Problem adding followed user")
