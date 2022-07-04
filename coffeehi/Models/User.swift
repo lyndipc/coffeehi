@@ -17,12 +17,26 @@ struct User: Identifiable {
     var postsCount: Int {
         posts.count
     }
-    var followers: [Any] = []
+    var followersList: [String: Any] = [:]
     var followersCount: Int {
-        followers.count
+        followersList.count
     }
-    var following: [Any] = []
+    var followingList: [String: Any] = [:]
     var followingCount: Int {
-        following.count
+        followingList.count
     }
+}
+
+struct Following: Identifiable {
+    var id: String = ""
+    var name: String = ""
+    var username: String = ""
+    var pfp: String = ""
+}
+
+struct Followers: Identifiable {
+    var id: String = ""
+    var name: String = ""
+    var username: String = ""
+    var pfp: String = ""
 }

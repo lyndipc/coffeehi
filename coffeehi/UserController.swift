@@ -61,15 +61,18 @@ class UserController: ObservableObject {
         // Fetch currently authenticated user data from Firestore
         if let userId = Auth.auth().currentUser?.uid {
             
+            // Create user instance and empty user list
+            var user = [User]()
+            var u = User()
+            
+            var temp: [String: Any] = [:]
+            var f = Following()
+            
             // Create reference to user document
             let users = db.collection("users").document(userId)
             
             // Retrive user document
             users.getDocument { docSnapshot, error in
-                
-                // Create user instance and empty user list
-                var user = [User]()
-                var u = User()
                 
                 // Check snapshot contains no errors
                 guard error == nil, docSnapshot != nil else {
@@ -81,8 +84,7 @@ class UserController: ObservableObject {
                 u.id = userId
                 u.name = docSnapshot?.get("name") as? String ?? ""
                 u.username = docSnapshot?.get("username") as? String ?? ""
-                u.followers = docSnapshot?.get("followers") as? [Any] ?? []
-                u.following = docSnapshot?.get("following") as? [Any] ?? []
+                u.followingList = temp
                 
                 // Extract map from docSnapshot
                 let profileMap = docSnapshot?.get("profile") as! [String: Any]
@@ -90,6 +92,7 @@ class UserController: ObservableObject {
                 // Store remaining profile data
                 u.bio = profileMap["bio"] as? String ?? ""
                 u.pfp = profileMap["pfp"] as? String ?? ""
+                
                 
                 // Append all data to empty array
                 user.append(u)
@@ -103,6 +106,28 @@ class UserController: ObservableObject {
                     self.user = user
                 }
             }
+            
+            // TODO: Add following to user data
+            // Extract following data from collection
+            users.collection("following").getDocuments { querySnapshot, error in
+
+                guard error == nil, querySnapshot != nil else {
+                    print(error!.localizedDescription)
+                    return
+                }
+                
+                for doc in querySnapshot!.documents {
+                    f.id = doc.documentID
+                    f.name = doc["name"] as? String ?? ""
+                    f.username = doc["username"] as? String ?? ""
+                    f.pfp = doc["pfp"] as? String ?? ""
+                    
+                    temp[f.id] = f
+                }
+            }
+            
+            // TODO: Create followers collection query
+            
         } else {
             return
         }
