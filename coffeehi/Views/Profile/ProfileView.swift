@@ -117,8 +117,8 @@ struct ProfileView: View {
                         }
                     }
                 }
-                .onAppear {
-                    userController.getUserData()
+                .task {
+                    await userController.getUserData()
                 }
             }
         }

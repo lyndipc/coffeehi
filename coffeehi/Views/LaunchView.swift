@@ -24,8 +24,8 @@ struct LaunchView: View {
                 
                 // Display LoginView() if user is not logged in
                 AuthenticationView()
-                    .onAppear {
-                        userController.checkLogin()
+                    .task {
+                        await userController.checkLogin()
                     }
             }
             else {

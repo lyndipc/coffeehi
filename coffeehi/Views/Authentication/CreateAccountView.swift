@@ -44,12 +44,12 @@ struct CreateAccountView: View {
                 
                 // MARK: New User Form
                 VStack(spacing: 10.0) {
-                        
-                        FormField(value: $name, label: "name", placeholder: "Name", width: g.size.width - 60)
-                        
-                        FormField(value: $username, label: "username", placeholder: "Username", width: g.size.width - 60)
-                        
-                        FormField(value: $email, label: "email", placeholder: "Email", width: g.size.width - 60)
+                    
+                    FormField(value: $name, label: "name", placeholder: "Name", width: g.size.width - 60)
+                    
+                    FormField(value: $username, label: "username", placeholder: "Username", width: g.size.width - 60)
+                    
+                    FormField(value: $email, label: "email", placeholder: "Email", width: g.size.width - 60)
                     
                     // Password text field
                     VStack(alignment: .leading) {
@@ -73,67 +73,67 @@ struct CreateAccountView: View {
                     
                     // MARK: Sign in button
                     Button {
-                        
-                        // TODO: Move to UserController
-                        // Create new account in firebase
-                        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+                        Task {
+                            // TODO: Move to UserController
                             
-                            // Check for errors
-                            guard error == nil else {
-                                self.errorMessage = error!.localizedDescription
-                                return
+                            do {
+                                // Create new account in firebase
+                                try await Auth.auth().createUser(withEmail: email, password: password)
+                            }
+                            catch {
+                                print(error.localizedDescription)
                             }
                             
-                            // Clear error message
-                            self.errorMessage = nil
+                            // Reference to current user's id
+                            let ref = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
                             
-                            // Save the first name
-                            let firebaseUser = Auth.auth().currentUser
-                            let db = Firestore.firestore()
-                            let ref = db.collection("users").document(firebaseUser!.uid)
-                            
-                            ref.setData(["name": name,
-                                         "username": username,
-                                         "posts": [],
-                                         "profile": ["bio": "", "pfp": ""],
-                                         "following": [],
-                                         "followers": []
-                                        ], merge: true)
-                            
+                            do {
+                                try await ref.setData(["name": name,
+                                                       "username": username,
+                                                       "posts": [],
+                                                       "profile": ["bio": "", "pfp": ""],
+                                                       "following": [],
+                                                       "followers": []
+                                                      ], merge: true)
+                            }
+                            catch {
+                                print(error.localizedDescription)
+                            }
                             // Update the user meta data
                             var user = UserService.shared.user
                             user.name = name
                             
                             // Change the view to logged in view
-                            self.userController.checkLogin()
+                            await self.userController.checkLogin()
                         }
-                    } label: {
+                    }
+                label: {
+                    
+                    VStack(spacing: 25.0) {
                         
-                        VStack(spacing: 25.0) {
+                        ZStack {
                             
-                            ZStack {
-                                
-                                ThemeButtonLabel(buttonText: "Create Account", width: g.size.width - 80, tracking: 2)
-                            }
+                            ThemeButtonLabel(buttonText: "Create Account", width: g.size.width - 80, tracking: 2)
+                        }
+                        
+                        // If user taps button, display switches to LoginView()
+                        Button {
                             
-                            // If user taps button, display switches to LoginView()
-                            Button {
-                                
-                                DispatchQueue.main.async {
-                                    loginMode = Constants.LoginMode.login
-                                }
-                            } label: {
-                                
-                                Text("Sign In")
-                                    .foregroundColor(Color.kellyGreen)
-                                    .underline()
-                                    .font(.caption)
-                                    .tracking(2)
+                            DispatchQueue.main.async {
+                                loginMode = Constants.LoginMode.login
                             }
+                        } label: {
+                            
+                            Text("Sign In")
+                                .foregroundColor(Color.kellyGreen)
+                                .underline()
+                                .font(.caption)
+                                .tracking(2)
                         }
                     }
                 }
-
+                }
+                
                 if errorMessage != nil {
                     Text(errorMessage!)
                         .foregroundColor(.red)
@@ -147,10 +147,11 @@ struct CreateAccountView: View {
         }
         .background(Color.background)
     }
-}
-
-struct CreateAccountView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateAccountView(loginMode: .constant(Constants.LoginMode.createAccount))
+    
+    struct CreateAccountView_Previews: PreviewProvider {
+        static var previews: some View {
+            CreateAccountView(loginMode: .constant(Constants.LoginMode.createAccount))
+        }
     }
+    
 }

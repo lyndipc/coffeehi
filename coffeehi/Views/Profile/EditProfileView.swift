@@ -36,13 +36,14 @@ struct EditProfileView: View {
                 // Save data button
                 Button {
                     
-                    // Update user profile with new changes
-                    userController.updateProfile(bio: bio, pfp: pfp)
-                    
-                    // Dismiss sheet
-                    DispatchQueue.main.async {
+                    Task {
+                        // Update user profile with new changes
+                        await userController.updateProfile(bio: bio, pfp: pfp)
+                        
+                        // Dismiss sheet
                         editProfileVisible = false
                     }
+                    
                 } label: {
                     
                     ThemeButtonLabel(buttonText: "Update Profile", width: g.size.width - 80, tracking: 0)

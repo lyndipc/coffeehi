@@ -78,25 +78,21 @@ struct LoginView: View {
                         // MARK: Sign in button
                         Button {
                             
-                            // Login user
-                            Auth.auth().signIn(withEmail: email, password: password) { result, error in
-                                
-                                // Check for errors
-                                guard error == nil else {
-                                    
-                                    // Capture error message
-                                    errorMessage = error!.localizedDescription
-                                    return
+                            Task {
+                                do {
+                                    // Login user
+                                    try await Auth.auth().signIn(withEmail: email, password: password)
+                                }
+                                catch {
+                                    errorMessage = error.localizedDescription
+                                    print("Could not sign in user")
                                 }
                                 
-                                // Clear error message
-                                self.errorMessage = nil
-                                
                                 // Get authenticated user's data
-                                userController.getUserData()
+                                await userController.getUserData()
                                 
                                 // Change the view to FeedView()
-                                userController.checkLogin()
+                                await userController.checkLogin()
                             }
                             
                         } label: {

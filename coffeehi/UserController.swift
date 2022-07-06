@@ -24,14 +24,15 @@ class UserController: ObservableObject {
     // MARK: Authentication Methods
     
     // Check if user is authenticated before displaying view
-    func checkLogin() {
+    @MainActor
+    func checkLogin() async {
         
         // Check if there's a current user authenticated
         loggedIn = Auth.auth().currentUser != nil ? true : false
         
         // Fetch user metadata if missing
         if UserService.shared.user.name == "" {
-            self.getUserData()
+            await self.getUserData()
         }
     }
     
@@ -56,88 +57,54 @@ class UserController: ObservableObject {
     // MARK: Data Retrieval Methods
     
     // Get all data for authenticated user
-    func getUserData() {
-        
+    @MainActor
+    func getUserData() async {
+            
         // Fetch currently authenticated user data from Firestore
         if let userId = Auth.auth().currentUser?.uid {
             
-            // Create user instance and empty user list
-            var user = [User]()
-            var u = User()
-            
-            var temp: [String: Any] = [:]
-            var f = Following()
-            
-            // Create reference to user document
             let users = db.collection("users").document(userId)
             
-            // Retrive user document
-            users.getDocument { docSnapshot, error in
+            do {
                 
-                // Check snapshot contains no errors
-                guard error == nil, docSnapshot != nil else {
-                    print(error!.localizedDescription)
+                // Create user struct to temporarily store retrieved data
+                var u = User()
+                
+                let userDocuments = try await users.getDocument().data()
+                guard let docs = userDocuments else {
                     return
                 }
                 
-                // Extract fields from docSnapshot and store
+                // Extract data and store in temporary struct
                 u.id = userId
-                u.name = docSnapshot?.get("name") as? String ?? ""
-                u.username = docSnapshot?.get("username") as? String ?? ""
-                u.followingList = temp
+                u.name = docs["name"] as? String ?? ""
+                u.username = docs["username"] as? String ?? ""
                 
-                // Extract map from docSnapshot
-                let profileMap = docSnapshot?.get("profile") as! [String: Any]
+                let profile = docs["profile"] as! [String: Any]
+                u.bio = profile["bio"] as? String ?? ""
+                u.pfp = profile["pfp"] as? String ?? ""
                 
-                // Store remaining profile data
-                u.bio = profileMap["bio"] as? String ?? ""
-                u.pfp = profileMap["pfp"] as? String ?? ""
+                // Store user data in environment object
+                self.user.append(u)
                 
+                // Store user data locally
+                UserService.shared.user = u
                 
-                // Append all data to empty array
-                user.append(u)
+                // TODO: Create followers collection query
                 
-                DispatchQueue.main.async {
-                    
-                    // Store user data locally
-                    UserService.shared.user = u
-                    
-                    // Store data in environment object
-                    self.user = user
-                }
             }
-            
-            // TODO: Add following to user data
-            // Extract following data from collection
-            users.collection("following").getDocuments { querySnapshot, error in
-
-                guard error == nil, querySnapshot != nil else {
-                    print(error!.localizedDescription)
-                    return
-                }
-                
-                for doc in querySnapshot!.documents {
-                    f.id = doc.documentID
-                    f.name = doc["name"] as? String ?? ""
-                    f.username = doc["username"] as? String ?? ""
-                    f.pfp = doc["pfp"] as? String ?? ""
-                    
-                    temp[f.id] = f
-                }
+            catch {
+                print("Something bad happened")
+                print(error.localizedDescription)
             }
-            
-            // TODO: Create followers collection query
-            
-        } else {
-            return
         }
     }
-    
     
     // MARK: Data Creation Methods
     
     // Follow a user
-    func followUser(followedUser: String?, followedUserId: String?, followedUserPfp: String?) {
+    @MainActor
+    func followUser(followedUser: String?, followedUserId: String?, followedUserPfp: String?) async {
         
         // Check currentUser is valid & create userId property
         if let userId = Auth.auth().currentUser?.uid {
@@ -166,14 +133,12 @@ class UserController: ObservableObject {
                 "pfp": followedUserPfp ?? ""
             ]
             
-            // Add followed user's data to current user's collection
-            userDoc.setData(followingData) { error in
-                if error != nil {
-                    print("Problem following user!")
-                    print(error!.localizedDescription)
-                } else {
-                    print("Followed user!")
-                }
+            do {
+                // Add followed user's data to current user's collection
+                try await userDoc.setData(followingData)
+            }
+            catch {
+                print(error.localizedDescription)
             }
             
             // Create new object from currentUser's data
@@ -185,14 +150,12 @@ class UserController: ObservableObject {
             
             // Add current user's id to the followed user's followers collection
             let followedUserDoc = db.collection("users").document(followedUserId!).collection("followers").document(userId)
-            followedUserDoc.setData(followerData) { error in
-                
-                if error != nil {
-                    print("Problem adding followed user")
-                    print(error!.localizedDescription)
-                } else {
-                    print("Added new follower!")
-                }
+            
+            do {
+                try await followedUserDoc.setData(followerData)
+            }
+            catch {
+                print(error.localizedDescription)
             }
             
         } else {
@@ -204,7 +167,8 @@ class UserController: ObservableObject {
     // MARK: Data Mutation Methods
     
     // Update user's profile
-    func updateProfile(bio: String?, pfp: String?) {
+    @MainActor
+    func updateProfile(bio: String?, pfp: String?) async -> Void {
         
         // Check for valid user
         if let userId = Auth.auth().currentUser?.uid {
@@ -215,13 +179,19 @@ class UserController: ObservableObject {
                 "pfp": pfp ?? ""
             ]
             
-            // Update profile info in db
-            db.collection("users").document(userId).updateData(["profile": profileData])
+            do {
+                // Update profile info in db
+                try await db.collection("users").document(userId).updateData(["profile": profileData])
+            }
+            catch {
+                print(error.localizedDescription)
+            }
             
             // Update profile in UI
-            DispatchQueue.main.async {
-                self.getUserData()
-            }
+            await self.getUserData()
+        }
+        else {
+            return
         }
     }
 }

@@ -34,8 +34,11 @@ struct PostView: View {
             
             // TODO: Conditionally display button based on whether currentUser is following user or not
             Button {
-                // call follow user method
-                userController.followUser(followedUser: name, followedUserId: id, followedUserPfp: "pfp")
+                Task {
+                    
+                    // call follow user method
+                    await userController.followUser(followedUser: name, followedUserId: id, followedUserPfp: "pfp")
+                }
             } label: {
                 Text("Follow")
             }
