@@ -60,7 +60,7 @@ class UserController: ObservableObject {
     @MainActor
     func getUserData() async {
             
-        // Fetch currently authenticated user data from Firestore
+        // Check currently authenticated user
         if let userId = Auth.auth().currentUser?.uid {
             
             let users = db.collection("users").document(userId)
@@ -99,6 +99,39 @@ class UserController: ObservableObject {
             }
         }
     }
+    
+    // TODO: Create method that fetches following/followers
+//    func getFollowData() {
+//        
+//        do {
+//            
+//            var temp: [String: Any] = [:]
+//            var f = Following()
+//            
+//            // Extract following data from collection
+//            let followingDocs = try await users.collection("following").getDocuments()
+////                guard let docs = followingDocs else {
+////                    return
+////                }
+//
+//            print("following", followingDocs.documents)
+//            
+//            
+////                f.id = docs
+//            for doc in followingDocs.documents {
+//                f.id = doc.documentID
+//                f.name = doc["name"] as? String ?? ""
+//                f.username = doc["username"] as? String ?? ""
+//                f.pfp = doc["pfp"] as? String ?? ""
+//
+//                temp[f.id] = f
+//            }
+//            print(f)
+//        }
+//        catch {
+//            print(error.localizedDescription)
+//        }
+//    }
     
     // MARK: Data Creation Methods
     
