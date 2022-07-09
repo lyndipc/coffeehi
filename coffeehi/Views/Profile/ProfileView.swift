@@ -65,7 +65,7 @@ struct ProfileView: View {
                                 .font(.title3)
                             
                             // Username
-                            Text("@\(user.username)")
+                            Text("@\(m.username)")
                                 .foregroundColor(.gray)
                             
                             // Following/Followers Count Button
@@ -116,9 +116,6 @@ struct ProfileView: View {
                                 .frame(maxHeight: 600)
                         }
                     }
-                }
-                .task {
-                    await userController.getUserData()
                 }
             }
         }
