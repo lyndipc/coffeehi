@@ -17,6 +17,9 @@ class UserController: ObservableObject {
     // Instance of user data
     @Published var user = [User]()
     
+    // Instance of user's following data
+    @Published var following = [Following]()
+    
     // Authentication state
     @Published var loggedIn = false
     
@@ -27,7 +30,6 @@ class UserController: ObservableObject {
     @MainActor
     func checkLogin() async {
         
-        // Check if there's a current user authenticated
         loggedIn = Auth.auth().currentUser != nil ? true : false
         
         // Fetch user metadata if missing
@@ -36,7 +38,6 @@ class UserController: ObservableObject {
         }
     }
     
-    // Sign out currently authenticated user
     func signOut() {
         
         do {
@@ -56,7 +57,6 @@ class UserController: ObservableObject {
     
     // MARK: Data Retrieval Methods
     
-    // Get all data for authenticated user
     @MainActor
     func getUserData() async {
             
@@ -91,7 +91,7 @@ class UserController: ObservableObject {
                 UserService.shared.user = u
                 
                 // TODO: Create followers collection query
-                
+                await self.getFollowData()
             }
             catch {
                 print("Something bad happened")
@@ -100,46 +100,43 @@ class UserController: ObservableObject {
         }
     }
     
-    // TODO: Create method that fetches following/followers
-//    func getFollowData() {
-//        
-//        do {
-//            
-//            var temp: [String: Any] = [:]
-//            var f = Following()
-//            
-//            // Extract following data from collection
-//            let followingDocs = try await users.collection("following").getDocuments()
-////                guard let docs = followingDocs else {
-////                    return
-////                }
-//
-//            print("following", followingDocs.documents)
-//            
-//            
-////                f.id = docs
-//            for doc in followingDocs.documents {
-//                f.id = doc.documentID
-//                f.name = doc["name"] as? String ?? ""
-//                f.username = doc["username"] as? String ?? ""
-//                f.pfp = doc["pfp"] as? String ?? ""
-//
-//                temp[f.id] = f
-//            }
-//            print(f)
-//        }
-//        catch {
-//            print(error.localizedDescription)
-//        }
-//    }
+    @MainActor
+    func getFollowData() async {
+        
+        if let userId = Auth.auth().currentUser?.uid {
+   
+            let users = db.collection("users").document(userId)
+            
+            do {
+                var f = Following()
+   
+                // Extract following data from collection
+                let followingDocs = try await users.collection("following").getDocuments()
+
+                for doc in followingDocs.documents {
+                    f.id = doc.documentID
+                    f.name = doc["name"] as? String ?? ""
+                    f.username = doc["username"] as? String ?? ""
+                    f.pfp = doc["pfp"] as? String ?? ""
+
+                    self.following.append(f)
+                }
+            }
+            catch {
+                print(error.localizedDescription)
+            }
+        }
+        else {
+            return
+        }
+    }
     
     // MARK: Data Creation Methods
     
-    // Follow a user
     @MainActor
     func followUser(followedUser: String?, followedUserId: String?, followedUserPfp: String?) async {
         
-        // Check currentUser is valid & create userId property
+        // Check currentUser is valid
         if let userId = Auth.auth().currentUser?.uid {
             
             // Check that the user attempting to be followed is valid
@@ -199,7 +196,6 @@ class UserController: ObservableObject {
     
     // MARK: Data Mutation Methods
     
-    // Update user's profile
     @MainActor
     func updateProfile(bio: String?, pfp: String?) async -> Void {
         
