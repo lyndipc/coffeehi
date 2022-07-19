@@ -136,7 +136,6 @@ class UserController: ObservableObject {
     @MainActor
     func followUser(followedUser: String?, followedUserId: String?, followedUserPfp: String?) async {
         
-        // Check currentUser is valid
         if let userId = Auth.auth().currentUser?.uid {
             
             // Check that the user attempting to be followed is valid
@@ -180,14 +179,12 @@ class UserController: ObservableObject {
             
             // Add current user's id to the followed user's followers collection
             let followedUserDoc = db.collection("users").document(followedUserId!).collection("followers").document(userId)
-            
             do {
                 try await followedUserDoc.setData(followerData)
             }
             catch {
                 print(error.localizedDescription)
             }
-            
         } else {
             return
         }
@@ -199,23 +196,18 @@ class UserController: ObservableObject {
     @MainActor
     func updateProfile(bio: String?, pfp: String?) async -> Void {
         
-        // Check for valid user
         if let userId = Auth.auth().currentUser?.uid {
             
-            // Create dict of profile data
             let profileData = [
                 "bio": bio ?? "",
                 "pfp": pfp ?? ""
             ]
-            
             do {
-                // Update profile info in db
                 try await db.collection("users").document(userId).updateData(["profile": profileData])
             }
             catch {
                 print(error.localizedDescription)
             }
-            
             // Update profile in UI
             await self.getUserData()
         }
