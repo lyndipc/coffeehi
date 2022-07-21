@@ -21,10 +21,7 @@ struct User: Identifiable {
     var followersCount: Int {
         followersList.count
     }
-    var followingList: [String: Any] = [:]
-    var followingCount: Int {
-        followingList.count
-    }
+    var followingList: [Following] = [Following]()
 }
 
 struct Following: Identifiable {

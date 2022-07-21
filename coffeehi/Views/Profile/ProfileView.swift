@@ -76,7 +76,7 @@ struct ProfileView: View {
                                 } label: {
                                     
                                     HStack {
-                                        Text("50")
+                                        Text("\(userController.following.count)" as String)
                                             .bold()
                                         Text("Following")
                                     }
